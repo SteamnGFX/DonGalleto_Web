@@ -153,17 +153,14 @@ function cargarGalleta() {
     let galletas = JSON.parse(localStorage.getItem("galletas"));
     let galleta = localStorage.getItem("galleta");
 
-    console.log(galletas);
-
     document.getElementById("txtIdGalleta").value = galletas[galleta].idGalleta;
     document.getElementById("txtNombreGalleta").value = galletas[galleta].nombre;
     document.getElementById("txtDescripcionGalleta").value = galletas[galleta].descripcion;
     document.getElementById("txtCantidadGalletas").innerHTML = galletas[galleta].cantidad;
 
 
-    console.log(galletas[galleta].fotografia);
-
     if (galletas[galleta].fotografia === "") {
+        const imgElemento = document.getElementById('fotografiaGalleta');
         imgElemento.src = "../../img/logo.png";
     } else {
         imgFotoGalleta = galletas[galleta].fotografia;
@@ -189,8 +186,6 @@ function guardarGalleta() {
         if (document.getElementById("txtIdGalleta").value === "") {
             galleta.idGalleta = 0;
         }
-
-        console.log(galleta);
 
         //Variable
         datos = {
@@ -234,8 +229,6 @@ function eliminarGalleta() {
     if (document.getElementById("txtIdGalleta").value === "") {
         galleta.idGalleta = 0;
     }
-
-    console.log(galleta);
 
     //Variable
     datos = {
