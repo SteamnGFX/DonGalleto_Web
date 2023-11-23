@@ -290,6 +290,10 @@ li.nav-item a:hover {
     text-align: right;
 }
 
+.imgGalleta{
+        margin-top: 25%;
+    }
+
 .btn-guardar {
     display: inline-flex;
     justify-content: center;
@@ -614,6 +618,10 @@ textarea {
     .btn-guardar{
         bottom: 20px;
         right: 75px;
+    }
+    
+    .imgGalleta{
+        margin-top: 0%;
     }
 }
 
