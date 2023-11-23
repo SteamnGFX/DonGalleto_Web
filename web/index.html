@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="img/icono.png" type="image/x-icon">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+        <link rel="stylesheet" href="css/styles.css">
+
+        <title>Iniciar Sesión</title>
+    </head>
+
+    <body>
+        <div class="contenedor-login">
+            <img src="img/logo_oscuro.png" alt="logo" style="background-color: black;">
+            <p id="lblError" class="d-none"></p>
+
+            <div class="input-container">
+                <input id="txtUser" type="text" class="input-field" placeholder="Usuario">
+                <i class="icon fas fa-user"></i>
+            </div>
+
+            <div class="input-container">
+                <input id="txtPassword" type="password" class="input-field" placeholder="Contraseña" id="passwordField">
+                <i class="icon fas fa-lock" onclick="togglePassword()"></i>
+            </div>
+            <button class="btn login" onclick="iniciarSersion()"><span>Iniciar sesión</span></button>
+
+        </div>
+
+        <script src="js/login.js"></script>
+    </body>
+
+</html>

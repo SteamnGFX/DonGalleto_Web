@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="img/icono.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+
+    <title>SIG - Inicio</title>
+</head>
+
+<body>
+    <i class="fas fa-bars" id="navbar-icon" onclick="toggleNavbar();"></i>
+    <ul class="navbar">
+        <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-home"></i> Inicio</a></li>
+        <li class="nav-item"><a class="nav-link" href="html/receta/recetas.html"><i class="fas fa-book-open"></i>
+                Recetas</a></li>
+        <li class="nav-item"><a class="nav-link" href="html/inventario/inventario.html"><i class="fas fa-cookie"></i>
+                Inventario</a></li>
+        <li class="nav-item"><a class="nav-link" href="html/materia/materias.html"><i class="fas fa-seedling"></i>
+                Materia Prima</a></li>
+        <li class="nav-item"><a class="nav-link" href="html/venta/venta.html"><i class="fas fa-shopping-cart"></i>
+                Venta</a></li>
+        <li class="nav-item"><a class="nav-link" href="html/corte/corte.html"><i class="fas fa-cut"></i> Corte</a></li>
+        <li class="nav-item"><a class="nav-link" id="cerrarSesion2"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a>
+        </li>
+    </ul>
+
+    <div class="contenedor">
+        <div class="contenedor-cards">
+            <div class="card" id="card-inventario"><label for="">INVENTARIO <i class="fas fa-cookie"></i></label></div>
+            <div class="card" id="card-materia"><label for="">MATERIA PRIMA <i class="fas fa-seedling"></i></label>
+            </div>
+            <div class="card" id="card-venta"><label for="">VENTA <i class="fas fa-shopping-cart"></i></label></div>
+            <div class="card" id="card-corte"><label for="">CORTE <i class="fas fa-cut"></i></label></div>
+            <div class="card" id="card-recetas"><label for="">RECETAS <i class="fas fa-book-open"></i></label></div>
+
+        </div>
+    </div>
+
+    <button id="cerrarSesion1" class="btn cerrarSesion">
+        <i class="fas fa-sign-out-alt"></i>
+    </button>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="../../img/icono.png" type="image/x-icon">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+        <link rel="stylesheet" href="styles.css">
+
+        <title>SIG - Inventario</title>
+    </head>
+
+    <body>
+        <i class="fas fa-bars" id="navbar-icon" onclick="toggleNavbar();"></i>
+        <ul class="navbar">
+            <li class="nav-item"><a class="nav-link" href="../../index.html"><i class="fas fa-home"></i> Inicio</a></li>
+            <li class="nav-item"><a class="nav-link" href="../receta/recetas.html"><i class="fas fa-book-open"></i>
+                    Recetas</a></li>
+            <li class="nav-item"><a class="nav-link" href="../inventario/inventario.html"><i class="fas fa-cookie"></i>
+                    Inventario</a></li>
+            <li class="nav-item"><a class="nav-link" href="../materia/materias.html"><i class="fas fa-seedling"></i>
+                    Materia Prima</a></li>
+            <li class="nav-item"><a class="nav-link" href="../venta/venta.html"><i class="fas fa-shopping-cart"></i>
+                    Venta</a></li>
+            <li class="nav-item"><a class="nav-link" href="../corte/corte.html"><i class="fas fa-cut"></i> Corte</a></li>
+            <li class="nav-item"><a class="nav-link" id="cerrarSesion"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a>
+            </li>
+        </ul>
+        <button id="btnRegresar" class="btnRegresar">← Regresar</button>
+
+        <h1 class="titulos">INVENTARIO</h1>
+
+        <div id="contenedor-inventario">
+            <div class="loader-div">
+                            <div class="loader"></div>
+
+            </div>
+
+        </div>
+
+        <div class="botones">
+            <button class="btn-guardar" id="btnAgregarGalleta" ><span>Agregar nueva galleta <i class="fas fa-plus-circle"></i></span></button>
+        </div>
+
+        <script src="script.js"></script>
+    </body>
+
+</html>

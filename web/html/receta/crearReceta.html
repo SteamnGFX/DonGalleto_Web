@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="../../img/icono.png" type="image/x-icon">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+        <link rel="stylesheet" href="styles.css">
+
+        <title>SIG - Crear Receta</title>
+    </head>
+
+    <body>
+        <i class="fas fa-bars" id="navbar-icon" onclick="toggleNavbar();"></i>
+        <ul class="navbar">
+            <li class="nav-item"><a class="nav-link" href="../../index.html"><i class="fas fa-home"></i> Inicio</a></li>
+            <li class="nav-item"><a class="nav-link" href="../receta/recetas.html"><i class="fas fa-book-open"></i>
+                    Recetas</a></li>
+            <li class="nav-item"><a class="nav-link" href="../inventario/inventario.html"><i class="fas fa-cookie"></i>
+                    Inventario</a></li>
+            <li class="nav-item"><a class="nav-link" href="../materia/materias.html"><i class="fas fa-seedling"></i>
+                    Materia Prima</a></li>
+            <li class="nav-item"><a class="nav-link" href="../venta/venta.html"><i class="fas fa-shopping-cart"></i>
+                    Venta</a></li>
+            <li class="nav-item"><a class="nav-link" href="../corte/corte.html"><i class="fas fa-cut"></i> Corte</a></li>
+            <li class="nav-item"><a class="nav-link" id="cerrarSesion"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a>
+            </li>
+        </ul>
+        <button id="btnRegresar" class="btnRegresar">← Regresar</button>
+
+        <h1 class="titulos">AÑADIR RECETA</h1>
+
+        <div class="contenedor1">
+            <img src="../../img/logo.png" alt="">
+            <div class="inputs">
+                <input type="text" name="" id="" placeholder="HAAAAA">
+                <textarea name="" id="" cols="30" rows="10" placeholder="AAAAAAAA"></textarea>
+            </div>
+        </div>
+
+        <div class="contenedor2">
+            <div class="ingredientes">
+                <input type="text" placeholder="INGREDIENTES">
+                <textarea name="" id="" cols="30" rows="10" placeholder="INGREDIENTES"></textarea>
+            </div>
+            <div class="pasos">
+                <input type="text" placeholder="PASOS">
+                <textarea name="" id="" cols="30" rows="10" placeholder="PASOS"></textarea>
+            </div>
+        </div>
+
+        <div class="boton">
+            <button class="btn-guardar"><span>Guardar <i class="fas fa-save"></i></span></button>
+        </div>
+
+        <script src="script.js"></script>
+    </body>
+
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="../../img/icono.png" type="image/x-icon">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <link rel="stylesheet" href="styles.css">
+
+        <title>SIG - Corte</title>
+    </head>
+
+    <body>
+        <i class="fas fa-bars" id="navbar-icon" onclick="toggleNavbar();"></i>
+        <ul class="navbar">
+            <li class="nav-item"><a class="nav-link" href="../../index.html"><i class="fas fa-home"></i> Inicio</a></li>
+            <li class="nav-item"><a class="nav-link" href="../receta/recetas.html"><i class="fas fa-book-open"></i>
+                    Recetas</a></li>
+            <li class="nav-item"><a class="nav-link" href="../inventario/inventario.html"><i class="fas fa-cookie"></i>
+                    Inventario</a></li>
+            <li class="nav-item"><a class="nav-link" href="../materia/materias.html"><i class="fas fa-seedling"></i>
+                    Materia Prima</a></li>
+            <li class="nav-item"><a class="nav-link" href="../venta/venta.html"><i class="fas fa-shopping-cart"></i>
+                    Venta</a></li>
+            <li class="nav-item"><a class="nav-link" href="../corte/corte.html"><i class="fas fa-cut"></i> Corte</a></li>
+            <li class="nav-item"><a class="nav-link" id="cerrarSesion"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a>
+            </li>
+        </ul>
+        <button id="btnRegresar" class="btnRegresar">← Regresar</button>
+
+        <h1 class="titulos">CORTE</h1>
+
+        <div class="contenedor-corte">
+            <div class="contenedor1">
+                <input type="date" name="dpFecha" id="dpFecha" placeholder="fecha">
+                <input type="time" name="dpHora" id="dpHora" placeholder="hora">
+                <input type="text" id="txtDineroTomado" placeholder="DINERO TOMADO">
+                <button class="btn"><span>TERMINAR CORTE <i class="fas fa-suitcase"></i></span></button>
+
+                <div class="galletas">
+                    <p>OREO:</p>
+                    <p>BOMBON:</p>
+                    <p>OTRO:</p>
+                </div>
+            </div>
+            <div class="contenedor2">
+                <div class="productos-vendidos">
+                    <h2 class="titulos-secundarios">PRODUCTOS VENDIDOS</h2>
+                </div>
+                <input type="text" id="txtUtilidad" placeholder="UTILIDAD">
+                <div class="tendencia">
+                    <h2 class="titulos-secundarios">TENDENCIA</h2>
+                    <canvas id="myChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <script src="script.js"></script>
+    </body>
+
+</html>
