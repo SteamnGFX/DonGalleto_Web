@@ -4,13 +4,11 @@ DonGalleto es un proyecto que combina HTML, CSS, JS, y una API REST para crear u
 
 ## Repositorios
 
-```
 - [DonGalleto_Web](https://github.com/SteamnGFX/DonGalleto_Web): Repositorio principal que contiene el código HTML, CSS, JS y la API REST para la aplicación web.
 
 - [DonGalleto_Core](https://github.com/SteamnGFX/DonGalleto_Core): Repositorio que alberga el núcleo del proyecto, incluyendo la lógica de comunicación con la base de datos y las funcionalidades de HTML.
 
 - [DonGalleto_Modelo](https://github.com/SteamnGFX/DonGalleto_Modelo): Repositorio que contiene el modelado de datos para el proyecto.
-```
 
 ## Tecnologías Utilizadas
 
