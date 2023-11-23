@@ -48,8 +48,9 @@ Despliega el archivo WAR generado en el directorio target en tu instancia de Apa
 
 Accede a la aplicación desde tu navegador: http://localhost:8080/DonGalleto
 ```
-Contribuciones
-¡Contribuciones son bienvenidas! Si encuentras un problema o tienes una idea para mejorar el proyecto, por favor crea un issue o realiza un pull request.
+## Contribuciones
+
+¡Las Contribuciones son bienvenidas! Si encuentras un problema o tienes una idea para mejorar el proyecto, por favor crea un issue o realiza un pull request.
 
 Licencia
 Este proyecto está licenciado bajo la Licencia MIT.
