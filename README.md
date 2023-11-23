@@ -30,11 +30,11 @@ El proyecto fue desarrollado en Netbeans 17. Para contribuir al desarrollo, sigu
 git clone https://github.com/SteamnGFX/DonGalleto_Web.git
 ```
 
-Abre el proyecto en Netbeans 17.
+2. Abre el proyecto en Netbeans 17.
 
-Realiza tus cambios y mejoras.
+3. Realiza tus cambios y mejoras.
 
-Realiza un pull request al repositorio principal.
+4. Realiza un pull request al repositorio principal.
 
 ## Despliegue
 
