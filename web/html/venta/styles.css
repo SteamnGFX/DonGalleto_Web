@@ -338,6 +338,31 @@ input {
     width: 100px;
 }
 
+.baja{
+    background-color: red;
+    padding: 1% 2% 1% 2%;
+    height: 10%;
+    color: white;
+    border-radius: 10px;
+}
+
+.media{
+    background-color: yellow;
+    padding: 1% 2% 1% 2%;
+    height: 10%;
+    color: black;
+    border-radius: 10px;
+}
+
+.alta{
+    background-color: green;
+    height: 10%;
+    padding: 1% 2% 1% 2%;
+    color: white;
+    border-radius: 10px;
+}
+
+
 .info-orden {
     display: flex;
     flex-direction: column;

@@ -17,4 +17,10 @@ document.getElementById("btnRegresar").addEventListener("click", function () {
     eliminarCache();
 });
 
+document.getElementById("btnAceptar").addEventListener("click", function () {
+    window.location.href = "orden.html";
+    eliminarCache();
+});
+
+
 document.addEventListener('click', closeNavbarOutsideClick);

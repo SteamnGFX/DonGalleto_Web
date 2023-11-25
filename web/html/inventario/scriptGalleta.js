@@ -287,6 +287,11 @@ function validarDatos() {
         alert("Ingresa la descripción de la galleta");
         return;
     }
+    
+    if (document.getElementById("txtPrecioGalleta").value === "") {
+        alert("Ingresa el precio de la galleta");
+        return;
+    }
     if (galletaCantidad === 0) {
         alert("Ingresa la cantidad de las galleta");
         return;
