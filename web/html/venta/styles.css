@@ -300,19 +300,18 @@ input {
 /*** ORDEN ***/
 .contenedor-orden {
     display: grid;
-    grid-template-columns: 1fr .5fr;
+    grid-template-columns: 1fr 1fr 1fr;
     justify-content: center;
     align-items: center;
     width: 80%;
-    margin: 0 auto;
+    margin: 0px 100px;
     gap: 40px;
     padding-bottom: 30px;
 }
 
 .galletas-orden {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 40px;
+    grid-template-columns: 1fr;
 }
 
 .card-galleta {

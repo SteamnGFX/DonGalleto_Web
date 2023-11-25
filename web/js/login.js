@@ -1,6 +1,6 @@
 var icon = document.querySelector(".fa-lock");
 function togglePassword() {
-    var passwordField = document.getElementById("passwordField");
+    var passwordField = document.getElementById("txtPassword");
 
     if (passwordField.type === "password") {
         passwordField.type = "text";
@@ -47,9 +47,14 @@ function iniciarSersion() {
                     document.getElementById("lblError").innerHTML = "";
                     document.getElementById("lblError").classList.add("d-none");
 
-                    localStorage.setItem("usuario", JSON.stringify(data));
+                    document.getElementById("contenedor-login").classList.remove("animate__fadeInDown");
+                    document.getElementById("contenedor-login").classList.add("animate__bounceOut");
 
-                    window.location = "inicio.html";
+
+                    localStorage.setItem("usuario", JSON.stringify(data));
+                    setTimeout(function () {
+                        window.location.href = "inicio.html";
+                    }, 1000);
                 }
             });
 }

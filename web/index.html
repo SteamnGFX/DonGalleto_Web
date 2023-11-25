@@ -7,12 +7,12 @@
         <link rel="icon" href="img/icono.png" type="image/x-icon">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
         <link rel="stylesheet" href="css/styles.css">
-
+        <link href="Assets/animate.min.css" rel="stylesheet" type="text/css"/>
         <title>Iniciar Sesión</title>
     </head>
 
     <body>
-        <div class="contenedor-login">
+        <div id="contenedor-login" class="contenedor-login animate__animated animate__fadeInDown">
             <img src="img/logo_oscuro.png" alt="logo" style="background-color: black;">
             <p id="lblError" class="d-none"></p>
 
@@ -22,13 +22,12 @@
             </div>
 
             <div class="input-container">
-                <input id="txtPassword" type="password" class="input-field" placeholder="Contraseña" id="passwordField">
+                <input id="txtPassword" type="password" class="input-field" placeholder="Contraseña">
                 <i class="icon fas fa-lock" onclick="togglePassword()"></i>
             </div>
             <button class="btn login" onclick="iniciarSersion()"><span>Iniciar sesión</span></button>
 
         </div>
-
         <script src="js/login.js"></script>
     </body>
 

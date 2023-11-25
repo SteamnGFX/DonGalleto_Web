@@ -7,7 +7,10 @@ var cerrarSesion1 = document.getElementById("cerrarSesion1");
 var cerrarSesion2 = document.getElementById("cerrarSesion2");
 
 inventario.addEventListener("click", function () {
-    window.location.href = "html/inventario/inventario.html";
+    animacion();
+    setTimeout(function () {
+        window.location.href = "html/inventario/inventario.html";
+    }, 1000);
 });
 
 materia.addEventListener("click", function () {
@@ -27,7 +30,10 @@ corte.addEventListener("click", function () {
 });
 
 cerrarSesion1.addEventListener("click", function () {
-    window.location.href = "index.html";
+    animacion();
+    setTimeout(function () {
+        window.location.href = "index.html";
+    }, 1000);
     eliminarCache();
 });
 
@@ -50,8 +56,13 @@ function closeNavbarOutsideClick(event) {
     }
 }
 
-function eliminarCache(){
+function eliminarCache() {
     localStorage.clear();
+}
+
+function animacion() {
+    document.getElementById("contenedor-main").classList.add("animate__animated");
+    document.getElementById("contenedor-main").classList.add("animate__fadeOut");
 }
 
 document.addEventListener('click', closeNavbarOutsideClick);

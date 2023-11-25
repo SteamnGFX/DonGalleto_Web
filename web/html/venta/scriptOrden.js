@@ -32,7 +32,7 @@ function createDivsFromGalletas(galletas) {
                 }
 
                 // Abre un nuevo contenedor-inventario
-                cuerpo += '<div class="contenedor-inventario">';
+                cuerpo += '<div class="contenedor-orden">';
             }
             
             if (galleta.fotografia === ""){
