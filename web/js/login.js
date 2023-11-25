@@ -15,6 +15,9 @@ function togglePassword() {
 
 
 function iniciarSersion() {
+    document.getElementById("txtBtnLogin").classList.add("d-none");
+    document.getElementById("loader-login").classList.remove("d-none");
+
     let usuario = {
         nombre_usuario: document.getElementById("txtUser").value,
         contrasenia: document.getElementById("txtPassword").value
@@ -36,13 +39,19 @@ function iniciarSersion() {
             })
             .then(function (data) {
                 if (data.exception != null) {
-                    console.log('Error interno del servidor. Intente nuevamente más tarde.');
+                    document.getElementById("txtBtnLogin").classList.remove("d-none");
+                    document.getElementById("loader-login").classList.add("d-none");
+
+                    document.getElementById("lblError").innerHTML = "Ha ocurrido un error. ERROR 502.";
+                    document.getElementById("lblError").classList.remove("d-none");
                     return;
                 }
 
                 if (data.error) {
                     document.getElementById("lblError").innerHTML = "Usuario / Contraseña incorrectos";
                     document.getElementById("lblError").classList.remove("d-none");
+                    document.getElementById("loader-login").classList.add("d-none");
+                    document.getElementById("txtBtnLogin").classList.remove("d-none");
                 } else {
                     document.getElementById("lblError").innerHTML = "";
                     document.getElementById("lblError").classList.add("d-none");
@@ -50,12 +59,16 @@ function iniciarSersion() {
                     document.getElementById("contenedor-login").classList.remove("animate__fadeInDown");
                     document.getElementById("contenedor-login").classList.add("animate__bounceOut");
 
+                    document.getElementById("loader-login").classList.add("d-none");
+                    document.getElementById("txtBtnLogin").classList.remove("d-none");
 
                     localStorage.setItem("usuario", JSON.stringify(data));
                     setTimeout(function () {
                         window.location.href = "inicio.html";
                     }, 1000);
                 }
+                document.getElementById("txtBtnLogin").classList.remove("d-none");
+
             });
 }
 

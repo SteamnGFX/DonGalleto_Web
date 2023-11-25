@@ -374,13 +374,15 @@ input {
     justify-content: center;
     align-items: center;
     width: 100%;
+    height: 100%;
     gap: 20px;
 }
 
 .orden {
     padding: 20px;
     width: 80%;
-    height: auto;
+    height: 60vh;
+    overflow-y: scroll;
     border: 3px solid black;
     border-radius: 20px;
 }

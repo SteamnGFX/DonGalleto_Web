@@ -5,9 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="../../img/icono.png" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
-
+    <link href="../../Assets/all.min.css" rel="stylesheet" type="text/css"/>
     <title>SIG - Orden</title>
 </head>
 
@@ -42,18 +41,15 @@
         <div class="info-orden">
             <div class="orden">
                 <h2 class="titulos-secundarios">ORDEN</h2>
-                <ul>
-                    <li>Lorem</li>
-                    <li>Lorem</li>
-                    <li>Lorem</li>
-                    <li>Lorem</li>
-                    <li>TOTAL: ---------</li>
-                </ul>
+                <div id="ordenLista">
+                    <p style="text-align: center; color:gray; font-style: italic;">Seleccione alguna galleta para iniciar la orden.</p>
+                    <span><i class="fa-solid fa-arrow-down-long"></i></span>
+                </div>
             </div>
-            <button class="btn"><span>COBRAR <i class="fas fa-money-bill-wave"></i></span></button>
+            <button id="btnCobrar" class="btn"><span>COBRAR <i class="fas fa-money-bill-wave"></i></span></button>
         </div>
     </div>
-
+    <script src="../../Assets/all.min.js"></script>
     <script src="scriptOrden.js"></script>
 </body>
 

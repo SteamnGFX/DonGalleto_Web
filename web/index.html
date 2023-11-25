@@ -5,8 +5,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="icon" href="img/icono.png" type="image/x-icon">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
         <link rel="stylesheet" href="css/styles.css">
+        <link href="Assets/all.min.css" rel="stylesheet" type="text/css"/>
         <link href="Assets/animate.min.css" rel="stylesheet" type="text/css"/>
         <title>Iniciar Sesión</title>
     </head>
@@ -25,10 +25,10 @@
                 <input id="txtPassword" type="password" class="input-field" placeholder="Contraseña">
                 <i class="icon fas fa-lock" onclick="togglePassword()"></i>
             </div>
-            <button class="btn login" onclick="iniciarSersion()"><span>Iniciar sesión</span></button>
-
+            <button class="btn login" onclick="iniciarSersion()"><span id="txtBtnLogin">Iniciar sesión</span><span id="loader-login" class="loader d-none"></span></button>
         </div>
         <script src="js/login.js"></script>
+        <script src="Assets/all.min.js"></script>
     </body>
 
 </html>

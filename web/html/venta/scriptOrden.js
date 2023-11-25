@@ -1,4 +1,7 @@
 getGalletas();
+let ordenGalletas = [];
+let galletas = "";
+
 function getGalletas() {
     fetch("../../api/galleta/getAll?",
             {
@@ -9,10 +12,8 @@ function getGalletas() {
                 return response.json();
             })
             .then(function (data) {
-                localStorage = data;
-                localStorage.setItem("galletas", JSON.stringify(data));
                 createDivsFromGalletas(data);
-                console.log(data);
+                galletas = data;
             });
 }
 
@@ -21,7 +22,7 @@ function createDivsFromGalletas(galletas) {
     let registro = "";
     let img = "";
     let claseGalletaCantidad = "";
-    
+
     if (galletas.length !== undefined) {
         galletas.forEach(function (galleta, index) {
             // Verifica si es la primera galleta del nuevo contenedor
@@ -34,14 +35,14 @@ function createDivsFromGalletas(galletas) {
                 // Abre un nuevo contenedor-inventario
                 cuerpo += '<div class="contenedor-orden">';
             }
-            
-            if (galleta.fotografia === ""){
+
+            if (galleta.fotografia === "") {
                 img = "../../img/icono.png";
             } else {
-                img = "data:image/jpeg;base64," + galleta.fotografia ;
+                img = "data:image/jpeg;base64," + galleta.fotografia;
             }
-            
-            if (galleta.cantidad <= 10){
+
+            if (galleta.cantidad <= 10) {
                 claseGalletaCantidad = "baja";
             } else if (galleta.cantidad <= 20) {
                 claseGalletaCantidad = "media";
@@ -50,7 +51,7 @@ function createDivsFromGalletas(galletas) {
             }
 
             registro =
-                   ' <div class="card-galleta"> <img class="inventarioGalleta" src="'+ img +'  " alt="galleta" style="aspect-ratio: 1 / 1; width: 192px; height: 192px"></div>'
+                    ' <div class="card-galleta" onclick="agregarGalletaOrden(' + galleta.idGalleta + ')"> <img class="inventarioGalleta" src="' + img + '  " alt="galleta" style="aspect-ratio: 1 / 1; width: 192px; height: 192px"><p>' + galleta.nombre + '</p></div>';
             cuerpo += registro;
 
             // Verifica si es la última galleta del arreglo
@@ -69,5 +70,50 @@ document.getElementById("btnRegresar").addEventListener("click", function () {
     eliminarCache();
 });
 
+document.getElementById("btnCobrar").addEventListener("click", function () {
+    cobrar();
+});
+
+function agregarGalletaOrden(idGalleta) {
+    let galletaSeleccionda = galletas.find(galleta => galleta.idGalleta === idGalleta);
 
 
+    ordenGalletas.push(galletaSeleccionda);
+    console.log(ordenGalletas);
+    actualizarOrdenGalletas(ordenGalletas);
+}
+
+function actualizarOrdenGalletas() {
+    let cuerpo = "";
+    let registro = "";
+    ordenGalletas.forEach(function (galleta) {
+        registro =
+            '<p>' + galleta.nombre + '<span style="font-style:bold;"><b> Tipo</b></span>: ' +
+            '<span style="color: black;"><b> Cantidad</b></span>: ' + ' </p>';
+        cuerpo += registro;
+    });
+
+    document.getElementById("ordenLista").innerHTML = cuerpo;
+}
+
+
+
+function cobrar() {
+    let respuesta = confirm("¿Deseas terminar la orden y cobrar?");
+    if (respuesta) {
+        alert("TOTAL: 1000 MXN.");
+
+        vaciarCarrito();
+    } else {
+        alert("Se ha cancelado la venta");
+    }
+}
+
+function    vaciarCarrito() {
+    ordenGalletas = [];
+    document.getElementById("ordenLista").innerHTML = '<p style="text-align: center; color:gray; font-style: italic;">Seleccione alguna galleta para iniciar la orden.</p>';
+}
+
+function flecha(){
+    
+}
