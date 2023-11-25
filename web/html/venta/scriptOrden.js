@@ -50,12 +50,7 @@ function createDivsFromGalletas(galletas) {
             }
 
             registro =
-                    '<div class="card-orden" onclick="cargarGalleta(' + galletas.indexOf(galleta) + ')">' +
-                    '<p class="p-cantidad ' + claseGalletaCantidad +' ">' + galleta.cantidad + '</p>' +
-                    '<img class="inventarioGalleta" src="'+ img +'  " alt="galleta" style="aspect-ratio: 1 / 1; width: 192px; height: 192px">' +
-                    '<p>' + galleta.nombre + '</p>' +
-                    '</div>';
-
+                   ' <div class="card-galleta"> <img class="inventarioGalleta" src="'+ img +'  " alt="galleta" style="aspect-ratio: 1 / 1; width: 192px; height: 192px"></div>'
             cuerpo += registro;
 
             // Verifica si es la última galleta del arreglo
@@ -63,13 +58,16 @@ function createDivsFromGalletas(galletas) {
                 cuerpo += '</div>';
             }
         });
-        document.getElementById("contenedor-orden").innerHTML = cuerpo;
+        document.getElementById("galletas-orden").innerHTML = cuerpo;
     } else {
         document.getElementById("btnAgregarGalleta").classList.add("d-none");
     }
-
-
 }
+
+document.getElementById("btnRegresar").addEventListener("click", function () {
+    window.location.href = "venta.html";
+    eliminarCache();
+});
 
 
 

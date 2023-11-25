@@ -33,13 +33,13 @@
     <div class="contenedor-venta">
         <h2 class="titulos-secundarios">Elige el tipo de venta</h2>
         <div class="opciones">
-            <button class="btn"><span>Unidad <i class="fas fa-box"></i></span></button>
-            <button class="btn"><span>Gramo <i class="fas fa-weight"></i></span></button>
-            <button class="btn"><span>Paquete <i class="fas fa-shopping-bag"></i></span></button>
+            <button id="btnUnidad" class="btn"><span>Unidad <i class="fas fa-box"></i></span></button>
+            <button id="btnGramo" class="btn"><span>Gramo <i class="fas fa-weight"></i></span></button>
+            <button id="btnPaquete" class="btn"><span>Paquete <i class="fas fa-shopping-bag"></i></span></button>
             
         </div>
-        <input type="number" placeholder="Cantidad de venta" min="1">
-        <button id="btnAceptar" class="btn aceptar"><span>Aceptar <i class="fas fa-check-circle"></i></span></button>
+        <input id="txtCantidadVenta" class="d-none" type="number" placeholder="Cantidad de venta" min="1">
+        <button id="btnVenta"  class="d-none"><span>Aceptar <i class="fas fa-check-circle"></i></span></button>
 
     </div>
 
