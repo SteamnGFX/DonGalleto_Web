@@ -102,6 +102,24 @@ document.getElementById('txtCantidadGalletas').addEventListener('dblclick', func
 });
 
 
+function soloNumeros(event) {
+    // Obtener el código de tecla presionada
+    var charCode = event.which || event.keyCode;
+
+    // Permitir solo números (códigos de tecla entre 48 y 57 son números)
+    if (charCode < 48 || charCode > 57) {
+        event.preventDefault();
+        return false;
+    }
+
+    // Permitir la tecla Enter (código 13)
+    if (charCode === 13) {
+        return true;
+    }
+}
+
+
+
 
 function aumentarGalletas() {
     galletaCantidad++;
@@ -113,10 +131,6 @@ function disminuirGalleta() {
     if (galletaCantidad > 1)
         galletaCantidad--;
     document.getElementById("txtCantidadGalletas").innerHTML = galletaCantidad;
-}
-
-function txtGalletas() {
-
 }
 
 function toggleInputs() {
@@ -156,6 +170,7 @@ function cargarGalleta() {
     document.getElementById("txtIdGalleta").value = galletas[galleta].idGalleta;
     document.getElementById("txtNombreGalleta").value = galletas[galleta].nombre;
     document.getElementById("txtDescripcionGalleta").value = galletas[galleta].descripcion;
+    document.getElementById("txtPrecioGalleta").value = galletas[galleta].precio;
     document.getElementById("txtCantidadGalletas").innerHTML = galletas[galleta].cantidad;
 
 
@@ -180,13 +195,14 @@ function guardarGalleta() {
             "cantidad": galletaCantidad,
             "nombre": document.getElementById("txtNombreGalleta").value,
             "descripcion": document.getElementById("txtDescripcionGalleta").value,
-            "fotografia": imgFotoGalleta
+            "fotografia": imgFotoGalleta,
+            "precio": parseFloat(document.getElementById("txtPrecioGalleta").value)
         };
 
         if (document.getElementById("txtIdGalleta").value === "") {
             galleta.idGalleta = 0;
         }
-
+        
         //Variable
         datos = {
             datosGalleta: JSON.stringify(galleta)

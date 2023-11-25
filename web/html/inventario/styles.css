@@ -348,6 +348,29 @@ li.nav-item a:hover {
 }
 
 
+.baja{
+    background-color: red;
+    padding: 1% 2% 1% 2%;
+    height: 10%;
+    color: white;
+    border-radius: 10px;
+}
+
+.media{
+    background-color: yellow;
+    padding: 1% 2% 1% 2%;
+    height: 10%;
+    color: black;
+    border-radius: 10px;
+}
+
+.alta{
+    background-color: green;
+    height: 10%;
+    padding: 1% 2% 1% 2%;
+    color: white;
+    border-radius: 10px;
+}
 .btn-eliminar span {
     font-family: "Open Sans Regular", sans-serif;
     font-size: 16px;

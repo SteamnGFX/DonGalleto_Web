@@ -53,6 +53,7 @@ function createDivsFromGalletas(galletas) {
     let cuerpo = "";
     let registro = "";
     let img = "";
+    let claseGalletaCantidad = "";
     
     if (galletas.length !== undefined) {
         galletas.forEach(function (galleta, index) {
@@ -72,10 +73,18 @@ function createDivsFromGalletas(galletas) {
             } else {
                 img = "data:image/jpeg;base64," + galleta.fotografia ;
             }
+            
+            if (galleta.cantidad <= 10){
+                claseGalletaCantidad = "baja";
+            } else if (galleta.cantidad <= 20) {
+                claseGalletaCantidad = "media";
+            } else {
+                claseGalletaCantidad = "alta";
+            }
 
             registro =
                     '<div class="card-inventario" onclick="cargarGalleta(' + galletas.indexOf(galleta) + ')">' +
-                    '<p class="p-cantidad">' + galleta.cantidad + '</p>' +
+                    '<p class="p-cantidad ' + claseGalletaCantidad +' ">' + galleta.cantidad + '</p>' +
                     '<img class="inventarioGalleta" src="'+ img +'  " alt="galleta" style="aspect-ratio: 1 / 1; width: 192px; height: 192px">' +
                     '<p>' + galleta.nombre + '</p>' +
                     '</div>';

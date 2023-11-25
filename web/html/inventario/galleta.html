@@ -43,13 +43,14 @@
             <div class="botones">
                 <button id="btnAgregar" class="btn agregar"><span>+</span></button>
                 <label id="txtCantidadGalletas" for="">X</label>
-                <input id="txtCantidadGalletas2" class="d-none" type="number" style="width: 25%; height: 70%; border-radius: 10px" onblur="guardarNumero()">
+                <input id="txtCantidadGalletas2" class="d-none" type="number" style="width: 25%; height: 70%; border-radius: 10px" onblur="guardarNumero()" onkeypress="return soloNumeros(event)" >
                 <button id="btnDisminuir" class="btn disminuir"><span>-</span></button>
             </div>
         </div>
         <div class="info">
             <input id="txtIdGalleta" type="number" placeholder="ID GALLETA" disabled class="d-none">
-            <input id="txtNombreGalleta" type="text" placeholder="Ingresa el nombre de una nueva galleta...">
+            <input id="txtNombreGalleta" type="text" placeholder="Ingresa el nombre de una nueva galleta..." style="width: 45%">
+            <input id="txtPrecioGalleta"  type="text" placeholder="Ingresa el precio de una galleta..." style="width: 45%"> <p>MXN</p>
             <textarea id="txtDescripcionGalleta" name="area" id="area" cols="30" rows="10" placeholder="Ingresa una descripción de una nueva galleta..."></textarea>
             <button id="eliminarGalleta" class="btn-eliminar"><span>Eliminar <i class="fas fa-save"></i></span></button>
             <button id="guardarGalleta" class="btn-guardar"><span>Guardar <i class="fas fa-save"></i></span></button>
