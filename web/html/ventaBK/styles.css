@@ -92,39 +92,39 @@ body {
 }
 
 .btnRegresar {
-    background-color: #FFFFFF;
-    border: 1px solid #222222;
-    border-radius: 8px;
-    box-sizing: border-box;
-    color: #222222;
-    cursor: pointer;
-    display: inline-block;
-    font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,"Helvetica Neue",sans-serif;
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 20px;
-    margin-top: 80px;
-    outline: none;
-    padding: 13px 23px;
-    position: relative;
-    text-align: center;
-    text-decoration: none;
-    touch-action: manipulation;
-    transition: box-shadow .2s,-ms-transform .1s,-webkit-transform .1s,transform .1s;
-    user-select: none;
-    -webkit-user-select: none;
-    width: auto;
+  background-color: #FFFFFF;
+  border: 1px solid #222222;
+  border-radius: 8px;
+  box-sizing: border-box;
+  color: #222222;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,"Helvetica Neue",sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+  margin-top: 80px;
+  outline: none;
+  padding: 13px 23px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  touch-action: manipulation;
+  transition: box-shadow .2s,-ms-transform .1s,-webkit-transform .1s,transform .1s;
+  user-select: none;
+  -webkit-user-select: none;
+  width: auto;
 }
 
 .btnRegresar:focus-visible {
-    box-shadow: #222222 0 0 0 2px, rgba(255, 255, 255, 0.8) 0 0 0 4px;
-    transition: box-shadow .2s;
+  box-shadow: #222222 0 0 0 2px, rgba(255, 255, 255, 0.8) 0 0 0 4px;
+  transition: box-shadow .2s;
 }
 
 .btnRegresar:active {
-    background-color: #F7F7F7;
-    border-color: #000000;
-    transform: scale(.96);
+  background-color: #F7F7F7;
+  border-color: #000000;
+  transform: scale(.96);
 }
 
 
@@ -201,53 +201,16 @@ li.nav-item a:hover {
 
 /*** VENTA ***/
 .contenedor-venta {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 60vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto;
-    width: 80%;
-    background-color: rgba(0, 0, 0, 0.7);
-    width: 100%;
-    height: 100%;
-    gap: 20px;
-    z-index: 9999;
-    display: none;
-}
-
-.venta {
-    position: relative;
-    height: 60vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto;
-    width: 80%;
-    background-color: var(--clr-blanco2);
     border-radius: 20px;
     border: 3px solid black;
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    width: 80%;
     gap: 20px;
-}
-
-.oculto {
-    display: none;
-}
-
-.cerrar-venta {
-    position: absolute;
-    top: 30px;
-    right: 30px;
-    cursor: pointer;
-}
-
-.cerrar-venta i {
-    font-size: 30px;
-    color: red;
 }
 
 .opciones {
@@ -260,24 +223,6 @@ li.nav-item a:hover {
 
 .btn {
     display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    width: 280px;
-    height: 60px;
-    background-color: var(--clr-amarillo);
-    font-weight: 700;
-    border: none;
-    cursor: pointer;
-    text-transform: uppercase;
-    transition: .3s ease all;
-    border-radius: 50px;
-    position: relative;
-    overflow: hidden;
-}
-
-.btnPieza{
-    display: inline-flex;
-    margin-top: 3%; 
     justify-content: center;
     align-items: center;
     width: 280px;
@@ -434,7 +379,7 @@ input {
 }
 
 .orden {
-    padding: 20px 20px 50px 20px;
+    padding: 20px;
     width: 80%;
     height: 60vh;
     overflow-y: scroll;
@@ -507,15 +452,15 @@ input {
 }
 
 @media screen and (max-width: 800px) {
-    .card-galleta {
+    .card-galleta { 
         height: auto;
     }
 
-    .btnRegresar{
+     .btnRegresar{
         top: -70px;
         left: 80px;
     }
-
+    
     .card-galleta img {
         width: 40%;
         height: auto;

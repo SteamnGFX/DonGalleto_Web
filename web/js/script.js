@@ -14,19 +14,31 @@ inventario.addEventListener("click", function () {
 });
 
 materia.addEventListener("click", function () {
-    window.location.href = "html/materia/materias.html";
+    animacion();
+    setTimeout(function () {
+        window.location.href = "html/materia/materias.html";
+    }, 1000);
 });
 
 venta.addEventListener("click", function () {
-    window.location.href = "html/venta/venta.html";
+    animacion();
+    setTimeout(function () {
+        window.location.href = "html/venta/orden.html";
+    }, 1000);
 });
 
 recetas.addEventListener("click", function () {
-    window.location.href = "html/receta/recetas.html";
+    animacion();
+    setTimeout(function () {
+        window.location.href = "html/receta/recetas.html";
+    }, 1000);
 });
 
 corte.addEventListener("click", function () {
-    window.location.href = "html/corte/corte.html";
+    animacion();
+    setTimeout(function () {
+        window.location.href = "html/corte/corte.html";
+    }, 1000);
 });
 
 cerrarSesion1.addEventListener("click", function () {
@@ -38,8 +50,11 @@ cerrarSesion1.addEventListener("click", function () {
 });
 
 cerrarSesion2.addEventListener("click", function () {
-    window.location.href = "index.html";
-    eliminarCache();
+    animacion();
+    setTimeout(function () {
+        eliminarCache();
+        window.location.href = "index.html";
+    }, 1000);
 });
 
 function toggleNavbar() {
