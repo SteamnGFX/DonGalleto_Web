@@ -7,6 +7,7 @@
         <link rel="icon" href="../../img/icono.png" type="image/x-icon">
         <link rel="stylesheet" href="styles.css">
         <link href="../../Assets/all.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../../Assets/material-ui.css" rel="stylesheet" type="text/css"/>
         <title>SIG - Galleta</title>
     </head>
 
@@ -49,7 +50,7 @@
                 <div class="info-galleta" style="width: 85%">
                     <input id="txtIdGalleta" type="number" placeholder="ID GALLETA" disabled class="d-none">
                     <input id="txtNombreGalleta" type="text" placeholder="Ingresa el nombre de una nueva galleta...">
-                    <input id="txtPrecioGalleta"  type="text" placeholder="Ingresa el precio de una galleta..."><p>MXN</p>
+                    <input id="txtPrecioGalleta"  type="text" placeholder="Ingresa el precio de una galleta..." onkeypress="return soloNumeros(event)" ><p>MXN</p>
                 </div>
 
                 <textarea id="txtDescripcionGalleta" name="area" id="area" cols="30" rows="10" placeholder="Ingresa una descripción de una nueva galleta..."></textarea>
@@ -60,6 +61,7 @@
 
         <script src="../../Assets/all.min.js"></script>
         <script src="scriptGalleta.js"></script>
+        <script src="../../Assets/sweetalert2.all.js" type="text/javascript"></script>
     </body>
 
 </html>

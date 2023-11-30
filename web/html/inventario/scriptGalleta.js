@@ -1,3 +1,5 @@
+/* global Swal */
+
 let galletaCantidad = 0;
 let clics = 0;
 let imgFotoGalleta = "";
@@ -202,7 +204,7 @@ function guardarGalleta() {
         if (document.getElementById("txtIdGalleta").value === "") {
             galleta.idGalleta = 0;
         }
-        
+
         //Variable
         datos = {
             datosGalleta: JSON.stringify(galleta)
@@ -280,21 +282,39 @@ function eliminarGalleta() {
 function validarDatos() {
 
     if (document.getElementById("txtNombreGalleta").value === "") {
-        alert("Ingresa el nombre de la galleta");
+        alerta("error","Ingresa el nombre de la galleta");
+        return;
+    }
+    if (document.getElementById("txtPrecioGalleta").value === "") {
+        alerta("error","Ingresa el precio de la galleta");
         return;
     }
     if (document.getElementById("txtDescripcionGalleta").value === "") {
-        alert("Ingresa la descripción de la galleta");
-        return;
-    }
-    
-    if (document.getElementById("txtPrecioGalleta").value === "") {
-        alert("Ingresa el precio de la galleta");
+        alerta("error","Ingresa la descripción de la galleta");
         return;
     }
     if (galletaCantidad === 0) {
-        alert("Ingresa la cantidad de las galleta");
+        alerta("error","Ingresa la cantidad de las galleta");
         return;
     }
     return true;
+}
+
+
+function alerta(icon,error) {
+    const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+        }
+    });
+    Toast.fire({
+        icon: icon,
+        title: error
+    });
 }
