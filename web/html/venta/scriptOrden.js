@@ -73,7 +73,7 @@ function createDivsFromGalletas(galletas) {
             }
 
             registro =
-                    ' <div class="card-galleta" onclick="agregarGalletaOrden(' + galleta.idGalleta + ')"> <img class="inventarioGalleta" src="' + img + '  " alt="galleta" style="aspect-ratio: 1 / 1; width: 192px; height: 192px"><p>' + galleta.nombre + '</p></div>';
+                    ' <div class="card-galleta" onclick="agregarGalletaOrden(' + galleta.idGalleta + ')"> <img class="inventarioGalleta" src="' + img + '  " alt="galleta" style="aspect-ratio: 1 / 1; width: 192px; height: 192px"><p>' + galleta.nombre + '</p><p>'+ galleta.cantidad +'</p></div>';
             cuerpo += registro;
 
             // Verifica si es la última galleta del arreglo
