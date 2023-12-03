@@ -39,7 +39,7 @@ public Response saveVenta(@FormParam("datosVenta") @DefaultValue("") String dato
     String out = "";
     try {
         ctrVenta.insert(ventas);
-        out = "{\"message\":\"Ventas insertadas correctamente.\"}";
+        out = "{\"success\":\"Venta realizada correctamente.\"}";
     } catch (Exception e) {
         e.printStackTrace();
         out = "{\"exception\":\"Error Interno del servidor.\"}";

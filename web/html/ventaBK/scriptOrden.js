@@ -88,8 +88,8 @@ function actualizarOrdenGalletas() {
     let registro = "";
     ordenGalletas.forEach(function (galleta) {
         registro =
-            '<p>' + galleta.nombre + '<span style="font-style:bold;"><b> Tipo</b></span>: ' +
-            '<span style="color: black;"><b> Cantidad</b></span>: ' + ' </p>';
+                '<p>' + galleta.nombre + '<span style="font-style:bold;"><b> Tipo</b></span>: ' +
+                '<span style="color: black;"><b> Cantidad</b></span>: ' + ' </p>';
         cuerpo += registro;
     });
 
@@ -99,13 +99,13 @@ function actualizarOrdenGalletas() {
 
 
 function cobrar() {
-    let respuesta = confirm("¿Deseas terminar la orden y cobrar?");
-    if (respuesta) {
-        alert("TOTAL: 1000 MXN.");
+    console.log(ordenGalletas.length);
+    console.log("ordenGalletas.length");
 
-        vaciarCarrito();
+    if (ordenGalletas.length === 0) {
+        alerta("error","¡No hay orden que cobrar!");
     } else {
-        alert("Se ha cancelado la venta");
+        
     }
 }
 
@@ -114,6 +114,6 @@ function    vaciarCarrito() {
     document.getElementById("ordenLista").innerHTML = '<p style="text-align: center; color:gray; font-style: italic;">Seleccione alguna galleta para iniciar la orden.</p>';
 }
 
-function flecha(){
-    
+function flecha() {
+
 }

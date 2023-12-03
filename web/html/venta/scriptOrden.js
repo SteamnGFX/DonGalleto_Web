@@ -43,7 +43,7 @@ function createDivsFromGalletas(galletas) {
     let cuerpo = "";
     let registro = "";
     let img = "";
-    let claseGalletaCantidad = "";
+    let clase = "";
 
     if (galletas.length !== undefined) {
         galletas.forEach(function (galleta, index) {
@@ -64,16 +64,15 @@ function createDivsFromGalletas(galletas) {
                 img = "data:image/jpeg;base64," + galleta.fotografia;
             }
 
-            if (galleta.cantidad <= 10) {
-                claseGalletaCantidad = "baja";
-            } else if (galleta.cantidad <= 20) {
-                claseGalletaCantidad = "media";
+            if (galleta.cantidad === 0) {
+                clase = "d-none";
             } else {
-                claseGalletaCantidad = "alta";
+                clase = "";
             }
 
+
             registro =
-                    ' <div class="card-galleta" onclick="agregarGalletaOrden(' + galleta.idGalleta + ')"> <img class="inventarioGalleta" src="' + img + '  " alt="galleta" style="aspect-ratio: 1 / 1; width: 192px; height: 192px"><p>' + galleta.nombre + '</p><p>'+ galleta.cantidad +'</p></div>';
+                    ' <div class="card-galleta ' + clase +'" onclick="agregarGalletaOrden(' + galleta.idGalleta + ')"> <img class="inventarioGalleta" src="' + img + '  " alt="galleta" style="aspect-ratio: 1 / 1; width: 192px; height: 192px"><p>' + galleta.nombre + '</p><p>' + galleta.cantidad + '</p></div>';
             cuerpo += registro;
 
             // Verifica si es la última galleta del arreglo
@@ -93,7 +92,7 @@ document.getElementById("btnRegresar").addEventListener("click", function () {
 });
 
 document.getElementById("btnCobrar").addEventListener("click", function () {
-    cobrar();
+    iniciarCobro();
 });
 
 function agregarGalletaOrden(idGalleta) {
@@ -103,9 +102,26 @@ function agregarGalletaOrden(idGalleta) {
 function actualizarOrdenGalletas() {
     let cuerpo = "";
     let registro = "";
+    let tipoGalleta = "";
+
+
+
     ordenGalletas.forEach(function (galleta) {
+        if (galleta.tipo === 1) {
+            tipoGalleta = "Pieza";
+        } else if (galleta.tipo === 2) {
+            tipoGalleta = "Gramo";
+
+        } else if (galleta.tipo === 3) {
+            tipoGalleta = "Peso Dinero";
+
+        } else if (galleta.tipo === 4) {
+            tipoGalleta = "Caja";
+
+        }
+
         registro =
-                '<p>' + galleta.nombre + '<br><b> Tipo: </b>' + galleta.tipoVenta + '  ' +
+                '<p>' + galleta.galleta.nombre + '<br><b> Tipo: </b>' + tipoGalleta + '  ' +
                 '<br><b> Cantidad: </b> ' + galleta.cantidad + ' </p>';
         cuerpo += registro;
     });
@@ -114,7 +130,6 @@ function actualizarOrdenGalletas() {
 
     var ordenLista = document.getElementById('ordenLista');
     var flechainf = document.getElementById('flechainf');
-    console.log(ordenLista.offsetHeight);
 
     if (ordenLista.offsetHeight > 450) {
         flechainf.classList.remove('d-none');
@@ -123,18 +138,49 @@ function actualizarOrdenGalletas() {
 
 
 
-function cobrar() {
-    let respuesta = confirm("¿Deseas terminar la orden y cobrar?");
-    if (respuesta) {
-        alert("TOTAL: 1000 MXN.");
-
-        vaciarCarrito();
+function iniciarCobro() {
+    if (ordenGalletas.length === 0) {
+        alerta("error", "¡No hay orden que cobrar!");
     } else {
-        alert("Se ha cancelado la venta");
+        cobrar();
     }
 }
 
-function    vaciarCarrito() {
+function cobrar() {
+    //Variable
+    datos = {
+        datosVenta: JSON.stringify(ordenGalletas)
+    };
+
+    params = new URLSearchParams(datos);
+    fetch("../../api/venta/save?",
+            {
+                method: "POST",
+                headers: {'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'},
+                body: params
+            })
+            .then(response => {
+                return response.json();
+            })
+            .then(function (data) {
+                if (data.exception != null) {
+                    console.log('Error interno del servidor. Intente nuevamente más tarde.');
+                    return;
+                }
+
+                if (data.error) {
+                    alert("algo ha ocurrido");
+                }
+
+                if (data.success) {
+                    alerta("success", "Venta realizada correctamente");
+                    vaciarCarrito();
+                    getGalletas();
+                }
+            });
+}
+
+function vaciarCarrito() {
     ordenGalletas = [];
     document.getElementById("ordenLista").innerHTML = '<p style="text-align: center; color:gray; font-style: italic;">Seleccione alguna galleta para iniciar la orden.</p>';
 }
@@ -209,6 +255,7 @@ function ocultarInput() {
     document.getElementById("btnVenta").classList.remove("btn");
     document.getElementById("btnVenta").classList.remove("aceptar");
 }
+
 function galletaClick(idGalleta) {
     (async () => {
         const {value: formValues} = await Swal.fire({
@@ -229,16 +276,40 @@ function manejadorGalletas(idGalleta, idTipoVenta) {
     let galletaSeleccionada = galletas.find(galleta => galleta.idGalleta === idGalleta);
     let ventaSeleccionada = tipoVenta.find(venta => venta.idVenta === idTipoVenta);
 
-    galletaSeleccionada.tipoVenta = ventaSeleccionada.tipo;
-    ordenGalletas.push(galletaSeleccionada);
-    Swal.close(); // Cierra la alerta al hacer clic en un botón
-    seleccionarCantidad(galletaSeleccionada, ventaSeleccionada.tipo);
+    if (!galletaSeleccionada || !ventaSeleccionada) {
+        // Manejar el caso cuando no se encuentra la galleta o la venta
+        alerta("error", "No se encontró la galleta o el tipo de venta");
+        return;
+    }
+
+    let cantidadGalletaSeleccionada = galletaSeleccionada.cantidad;
+
+    if (cantidadGalletaSeleccionada <= 0) {
+        // Manejar el caso cuando no hay galletas disponibles
+        alerta("error", "No hay galletas disponibles");
+        return;
+    }
+
+    // Crear un objeto de orden de galletas
+    let nuevaOrden = {
+        idVenta: ventaSeleccionada.idVenta,
+        galleta: {
+            idGalleta: galletaSeleccionada.idGalleta,
+            nombre: galletaSeleccionada.nombre,
+            precio: galletaSeleccionada.precio
+        },
+        cantidad: 0, // Se actualizará después en seleccionarCantidad
+        tipo: ventaSeleccionada.idVenta,
+        fechaVenta: new Date().toISOString() // Obtener la fecha actual en formato ISO
+    };
+
+    seleccionarCantidad(nuevaOrden, cantidadGalletaSeleccionada);
 }
 
-function seleccionarCantidad(galletaSeleccionada, ventaSeleccionada) {
+function seleccionarCantidad(orden, cantidadGalletaSeleccionada) {
     (async () => {
         const {value: cantidad} = await Swal.fire({
-            title: "Ingresa la cantidad de " + ventaSeleccionada,
+            title: "Ingresa la cantidad de " + orden.tipo,
             input: "text",
             inputLabel: "Cantidad",
             inputPlaceholder: "100",
@@ -248,11 +319,46 @@ function seleccionarCantidad(galletaSeleccionada, ventaSeleccionada) {
                 autocorrect: "off"
             }
         });
+
         if (cantidad) {
-            galletaSeleccionada.cantidad = cantidad;
-            actualizarOrdenGalletas();
+            if (cantidad > cantidadGalletaSeleccionada) {
+                alerta("error", "No hay galletas suficientes");
+            } else {
+                orden.cantidad = cantidad;
+                ordenGalletas.push(orden);
+                actualizarStockGalletas(orden.galleta.idGalleta, cantidad);
+                // Actualizar la ordenGalletas original con la cantidad ingresada
+                actualizarOrdenGalletas();
+            }
         }
     })();
 }
 
- 
+function actualizarStockGalletas(idGalleta, cantidadVendida) {
+    let galleta = galletas.find(g => g.idGalleta === idGalleta);
+
+
+    if (galleta) {
+        galleta.cantidad -= cantidadVendida;
+    }
+
+    createDivsFromGalletas(galletas);
+}
+
+function alerta(icon, error) {
+    const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+        }
+    });
+    Toast.fire({
+        icon: icon,
+        title: error
+    });
+}
