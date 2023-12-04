@@ -44,6 +44,7 @@ function createDivsFromGalletas(galletas) {
     let registro = "";
     let img = "";
     let clase = "";
+    let claseGalletaCantidad = "";
 
     if (galletas.length !== undefined) {
         galletas.forEach(function (galleta, index) {
@@ -69,10 +70,25 @@ function createDivsFromGalletas(galletas) {
             } else {
                 clase = "";
             }
+            
+             if (galleta.cantidad <= 10){
+                claseGalletaCantidad = "baja";
+            } else if (galleta.cantidad <= 20) {
+                claseGalletaCantidad = "media";
+            } else {
+                claseGalletaCantidad = "alta";
+            }
 
 
-            registro =
-                    ' <div class="card-galleta ' + clase +'" onclick="agregarGalletaOrden(' + galleta.idGalleta + ')"> <img class="inventarioGalleta" src="' + img + '  " alt="galleta" style="aspect-ratio: 1 / 1; width: 192px; height: 192px"><p>' + galleta.nombre + '</p><p>' + galleta.cantidad + '</p></div>';
+            registro = '<div class="card-galleta" onclick="agregarGalletaOrden(' + galleta.idGalleta + ')">' +
+                    '<img class="inventarioGalleta" src="' + img + '" alt="galleta">' +
+                    '<div style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; margin: 5px;">' +
+                    '<div class="'+ claseGalletaCantidad +'">' +
+                    '<p style="font-weight: 700;">' + galleta.cantidad + '</p>' +
+                    '</div>' +
+                    '<p>' + galleta.nombre + '</p>' +
+                    '</div>' +
+                    '</div>';
             cuerpo += registro;
 
             // Verifica si es la última galleta del arreglo
@@ -122,7 +138,7 @@ function actualizarOrdenGalletas() {
 
         registro =
                 '<p>' + galleta.galleta.nombre + '<br><b> Tipo: </b>' + tipoGalleta + '  ' +
-                '<br><b> Cantidad: </b> ' + galleta.cantidad + ' </p>';
+                '<br><b> Cantidad: </b> ' + galleta.cantidad + ' <br><i class="fa-solid fa-trash" style="color:red; cursor:pointer;"></i></p>';
         cuerpo += registro;
     });
 

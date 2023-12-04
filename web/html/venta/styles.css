@@ -277,7 +277,7 @@ li.nav-item a:hover {
 
 .btnPieza{
     display: inline-flex;
-    margin-top: 3%; 
+    margin-top: 3%;
     justify-content: center;
     align-items: center;
     width: 280px;
@@ -356,17 +356,26 @@ input {
 .contenedor-orden {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    justify-content: center;
-    align-items: center;
+    place-content: center;
     width: 80%;
-    margin: 0px 100px;
-    gap: 40px;
-    padding-bottom: 30px;
+    margin: 0 auto;
+    gap: 80px;
+    padding: 10px 0px;
 }
 
 .galletas-orden {
     display: grid;
     grid-template-columns: 1fr;
+    place-content: center;
+    margin: 0 auto;
+    gap: 20px;
+}
+
+
+.inventarioGalleta {
+    width: 60%;
+    height: 60%;
+    padding: 10px
 }
 
 .card-galleta {
@@ -375,6 +384,7 @@ input {
     display: flex;
     justify-content: center;
     align-items: center;
+    min-width: 220px;
     width: 100%;
     min-height: 200px;
     margin: 0;
@@ -382,7 +392,7 @@ input {
     box-shadow: 10px 8px 8px rgba(0, 0, 0, 0.8);
     transition-duration: .5s;
     cursor: pointer;
-    margin: 15%;
+    overflow: hidden;
 }
 
 .card-galleta:hover {
@@ -393,35 +403,6 @@ input {
     font-family: 'BrightRetro', sans-serif;
     font-size: 48px;
 }
-
-.card-galleta img {
-    width: 100px;
-}
-
-.baja{
-    background-color: red;
-    padding: 1% 2% 1% 2%;
-    height: 10%;
-    color: white;
-    border-radius: 10px;
-}
-
-.media{
-    background-color: yellow;
-    padding: 1% 2% 1% 2%;
-    height: 10%;
-    color: black;
-    border-radius: 10px;
-}
-
-.alta{
-    background-color: green;
-    height: 10%;
-    padding: 1% 2% 1% 2%;
-    color: white;
-    border-radius: 10px;
-}
-
 
 .info-orden {
     display: flex;
@@ -565,7 +546,7 @@ input {
     }
 
     .opciones {
-        flex-direction: column;
+        flex-direction: column;        
     }
 
     .opciones .btn,
@@ -582,4 +563,31 @@ input {
         width: 100%;
         height: 200%;
     }
+}
+
+.media{
+    background-color: yellow; 
+    width: 50px; 
+    height: 50px; 
+    border-radius: 50%; 
+    display: flex;
+    justify-content: center; 
+}
+
+.baja{
+    background-color: red; 
+    width: 50px; 
+    height: 50px; 
+    border-radius: 50%; 
+    display: flex;
+    justify-content: center; 
+}
+
+.alta{
+    background-color: #7ED957; 
+    width: 50px; 
+    height: 50px; 
+    border-radius: 50%; 
+    display: flex;
+    justify-content: center; 
 }
