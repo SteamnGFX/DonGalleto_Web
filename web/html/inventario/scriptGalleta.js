@@ -174,7 +174,8 @@ function cargarGalleta() {
     document.getElementById("txtDescripcionGalleta").value = galletas[galleta].descripcion;
     document.getElementById("txtPrecioGalleta").value = galletas[galleta].precio;
     document.getElementById("txtCantidadGalletas").innerHTML = galletas[galleta].cantidad;
-
+    document.getElementById("txtPesoGalleta").value = galletas[galleta].peso;
+    
 
     if (galletas[galleta].fotografia === "") {
         const imgElemento = document.getElementById('fotografiaGalleta');
@@ -198,7 +199,8 @@ function guardarGalleta() {
             "nombre": document.getElementById("txtNombreGalleta").value,
             "descripcion": document.getElementById("txtDescripcionGalleta").value,
             "fotografia": imgFotoGalleta,
-            "precio": parseFloat(document.getElementById("txtPrecioGalleta").value)
+            "precio": parseFloat(document.getElementById("txtPrecioGalleta").value),
+            "peso": parseFloat(document.getElementById("txtPesoGalleta").value)
         };
 
         if (document.getElementById("txtIdGalleta").value === "") {
