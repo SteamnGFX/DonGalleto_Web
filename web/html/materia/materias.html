@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="es">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="../../img/icono.png" type="image/x-icon">
-    <link rel="stylesheet" href="styles.css">
-    <link href="../../Assets/all.min.css" rel="stylesheet" type="text/css"/>
-    <title>SIG - Materia prima</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="../../img/icono.png" type="image/x-icon">
+        <link rel="stylesheet" href="styles.css">
+        <link href="../../Assets/all.min.css" rel="stylesheet" type="text/css"/>
+        <title>SIG - Inventario</title>
+    </head>
 
 <body>
     <i class="fas fa-bars" id="navbar-icon" onclick="toggleNavbar();"></i>
@@ -30,28 +30,19 @@
   
     <h1 class="titulos">MATERIA PRIMA</h1>
 
-    <div class="contenedor">
-        <div class="contenedor-materias">
-            <div class="card-materias">
-                <img src="../../img/icono.png" alt="galleta">
-                <p>Harina</p>
-            </div>
-            <div class="card-materias">
-                <img src="../../img/icono.png" alt="galleta">
-                <p>Chocholate</p>
-            </div>
-            <div class="card-materias">
-                <img src="../../img/icono.png" alt="galleta">
-                <p>Azúcar</p>
-            </div>
-        </div>
-        <div class="botones">
-            <button class="btn-guardar"><span>Agregar materia prima <i class="fas fa-plus-circle"></i></span></button>
+        <h1 class="titulos">INVENTARIO</h1>
 
+        <div id="contenedor-inventario">
+            <div class="loader-div">
+                            <div class="loader"></div>
+            </div>
         </div>
-    </div>
-    <script src="../../Assets/all.min.js"></script>
-    <script src="script.js"></script>
-</body>
+
+        <div class="botones">
+            <button class="btn-guardar" id="btnAgregarMateria" ><span>Agregar nueva galleta <i class="fas fa-plus-circle"></i></span></button>
+        </div>
+        <script src="../../Assets/all.min.js"></script>
+        <script src="script.js"></script>
+    </body>
 
 </html>

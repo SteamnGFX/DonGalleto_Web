@@ -7,7 +7,7 @@
         <link rel="icon" href="../../img/icono.png" type="image/x-icon">
         <link rel="stylesheet" href="styles.css">
         <link href="../../Assets/all.min.css" rel="stylesheet" type="text/css"/>
-        <title>SIG - Materia Prima</title>
+        <title>SIG - Materia</title>
     </head>
 
     <body>
@@ -26,28 +26,63 @@
             <li class="nav-item"><a class="nav-link" id="cerrarSesion"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a>
             </li>
         </ul>
-        <button id="btnRegresar" class="btnRegresar">← Regresar</button>
+        <button class="btnRegresar" onclick="regresarMaterias()">← Regresar</button>
 
-        <h1 class="titulos">MATERIA PRIMA</h1>
+        <h1 class="titulos">Materia</h1>
 
-        <div class="contenedor-materia">
+        <div class="contenedor-Materia">
             <div class="foto">
-                <img src="../../img/logo.png" alt="logo">
+                <img id="fotografiaMateria" src="../../img/logo.png" alt="logo" class="imgMateria">
+                <p style="padding:0%; margin:-2%; font-style: italic; color:gray">Formato de imagen JPG, PNG</p>
+                <p style="padding:0%; margin:1%; font-style: italic; color:gray">192 x 192 pixeles</p>
+                <br>
+                <p style="padding:0%; margin:0%">Cantidad de Materias</p>
                 <div class="botones">
-                    <button class="btn agregar"><span>+</span></button>
-                    <label>X</label>
-                    <button class="btn disminuir"><span>-</span></button>
+                    <button id="btnAgregar" class="btn agregar"><span>+</span></button>
+                    <label id="txtCantidadMaterias" for="">X</label>
+                    <input id="txtCantidadMaterias2" class="d-none" type="number" style="width: 25%; height: 70%; border-radius: 10px" onblur="guardarNumero()" onkeypress="return soloNumeros(event)" >
+                    <button id="btnDisminuir" class="btn disminuir"><span>-</span></button>
+                    <select id="txtUnidadMedida" class="combo-box">
+                        <option value="" disabled selected>Medida</option>
+                        <option value="kilogramos">Kilogramos</option>
+                        <option value="litros">Litros</option>
+                        <option value="piezas">Pieza´s</option>
+                    </select>
+                </div>
+                <div class="botones">
+
                 </div>
             </div>
             <div class="info">
-                <input type="text" placeholder="HOLA">
-                <textarea name="area" id="area" cols="30" rows="10" placeholder="XD"></textarea>
-                <button class="btn-guardar"><span>Guardar <i class="fas fa-save"></i></span></button>
+                <div class="input-container" style="width: 50%">
+                    <label for="fechaCompra">Fecha de Compra:</label>
+                    <input id="txtFechaCompra" type="date">
+                </div>
+                <div class="info-Materia" style="width: 85%">
+                    <input id="txtIdMateria" type="number" placeholder="ID Materia" disabled class="d-none">
+                    <input id="txtNombreMateria" type="text" placeholder="Ingresa el nombre del producto">
+                    <select id="txtProveedorMateria" class="combo-box">
+                        <option value="" disabled selected>Proveedor</option>
+                        <option value="Mj">Maza Juana</option>
+                        <option value="Sp">Soriana Plus</option>
+                        <option value="Otros">Otros.</option>
+                    </select>
+                    <div class="input-container">
+                        <input id="txtPrecioMateria" type="text" placeholder="Precio">
+                        <p>MXN</p>
+                    </div>
+
+                </div>
+
+
+                <button id="eliminarMateria" class="btn-eliminar"><span>Eliminar <i class="fas fa-save"></i></span></button>
+                <button id="guardarMateria" class="btn-guardar"><span>Guardar <i class="fas fa-save"></i></span></button>
             </div>
         </div>
 
         <script src="../../Assets/all.min.js"></script>
-        <script src="script.js"></script>
+        <script src="scriptMateria.js"></script>
+        <script src="../../Assets/sweetalert2.all.js"></script>
     </body>
 
 </html>

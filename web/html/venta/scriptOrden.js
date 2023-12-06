@@ -115,7 +115,7 @@ function agregarGalletaOrden(idGalleta) {
     galletaClick(idGalleta);
 }
 
-function actualizarOrdenGalletas() {
+function actualizarOrdenGalletas(gramos) {
     let cuerpo = "";
     let registro = "";
     let tipoGalleta = "";
@@ -125,8 +125,18 @@ function actualizarOrdenGalletas() {
     ordenGalletas.forEach(function (galleta) {
         if (galleta.tipo === 1) {
             tipoGalleta = "Pieza";
+            registro =
+                '<p>' + galleta.galleta.nombre + '<br><b> Tipo: </b>' + tipoGalleta + '  ' +
+                '<br><b> Cantidad: </b> ' + galleta.cantidad + ' <br><i class="fa-solid fa-trash" style="color:red; cursor:pointer;" onclick="eliminarGalleta(' + galleta.galleta.idGalleta + ')"></i></p>';
+        cuerpo += registro;
         } else if (galleta.tipo === 2) {
+            
             tipoGalleta = "Gramo";
+            registro =
+                '<p>' + galleta.galleta.nombre + '<br><b> Tipo: </b>' + tipoGalleta + '  ' +
+                '<br><b> Cantidad: </b> ' + galleta.cantidad + ' <br>'+
+                'Gramos: ' + gramos + '<br><i class="fa-solid fa-trash" style="color:red; cursor:pointer;" onclick="eliminarGalleta(' + galleta.galleta.idGalleta + ')"></i> </p>';
+        cuerpo += registro;
 
         } else if (galleta.tipo === 3) {
             tipoGalleta = "Peso Dinero";
@@ -136,10 +146,6 @@ function actualizarOrdenGalletas() {
 
         }
 
-        registro =
-                '<p>' + galleta.galleta.nombre + '<br><b> Tipo: </b>' + tipoGalleta + '  ' +
-                '<br><b> Cantidad: </b> ' + galleta.cantidad + ' <br><i class="fa-solid fa-trash" style="color:red; cursor:pointer;" onclick="eliminarGalleta(' + galleta.galleta.idGalleta + ')"></i></p>';
-        cuerpo += registro;
     });
 
     document.getElementById("ordenLista").innerHTML = cuerpo;
@@ -378,7 +384,7 @@ function seleccionarCantidad(orden, cantidadGalletaSeleccionada, idTipoVenta, pe
                     ordenGalletas.push(orden);
                     actualizarStockGalletasGramo(orden.galleta.idGalleta, cantidad);
                     // Actualizar la ordenGalletas original con la cantidad ingresada
-                    actualizarOrdenGalletas();
+                    actualizarOrdenGalletas(gramosVendidas*10);
                 }
             }
         })();
