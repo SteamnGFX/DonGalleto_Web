@@ -1,83 +1,162 @@
-var inventario = document.getElementById("card-inventario");
-var materia = document.getElementById("card-materia");
-var venta = document.getElementById("card-venta");
-var recetas = document.getElementById("card-recetas");
-var corte = document.getElementById("card-corte");
-var cerrarSesion1 = document.getElementById("cerrarSesion1");
-var cerrarSesion2 = document.getElementById("cerrarSesion2");
+window.onload = inicializar;
 
-inventario.addEventListener("click", function () {
-    animacion();
-    setTimeout(function () {
-        window.location.href = "html/inventario/inventario.html";
-    }, 1000);
-});
+let collapse = false;
 
-materia.addEventListener("click", function () {
-    animacion();
-    setTimeout(function () {
-        window.location.href = "html/materia/materias.html";
-    }, 1000);
-});
+let navData = [];
 
-venta.addEventListener("click", function () {
-    animacion();
-    setTimeout(function () {
-        window.location.href = "html/venta/orden.html";
-    }, 1000);
-});
+let menuItem = {};
 
-recetas.addEventListener("click", function () {
-    animacion();
-    setTimeout(function () {
-        window.location.href = "html/receta/recetas.html";
-    }, 1000);
-});
+let controller;
 
-corte.addEventListener("click", function () {
-    animacion();
-    setTimeout(function () {
-        window.location.href = "html/corte/corte.html";
-    }, 1000);
-});
+function inicializar(){  
+        
+    navData = [
+        {  
+            label: "Inicio",
+            icon: "fas fa-home",
+            btn: "inicio"
+        },
+        {
+            label: "Recetas",
+            icon: "fas fas fa-book",
+            btn: "recetas"
+        },
+        // {
+        //     link: "inicio.html",
+        //     label: "Inventario",
+        //     icon: ""
+        // },
+        // {
+        //     link: "inicio.html",
+        //     label: "Materia Prima",
+        //     icon: ""
+        // },
+        // {
+        //     link: "inicio.html",
+        //     label: "Corte",
+        //     icon: ""
+        // }
+    ];
 
-cerrarSesion1.addEventListener("click", function () {
-    animacion();
-    setTimeout(function () {
-        window.location.href = "index.html";
-    }, 1000);
-    eliminarCache();
-});
+    menuItem = {
+        "inicio":{
+            "htmlFile": "html/menu/menu.html",
+            "jsFile": "../html/menu/menu.js",
+            "cssFile": "html/menu/menu.css"
+        },
+        "recetas":{
+            "htmlFile": "html/receta/recetas.html",
+            "jsFile": "../../html/receta/recetas.js",
+            "cssFile": "html/receta/recetas.css"
+        }
+    };
 
-cerrarSesion2.addEventListener("click", function () {
-    animacion();
-    setTimeout(function () {
-        eliminarCache();
-        window.location.href = "index.html";
-    }, 1000);
-});
+    cargarMenu();
 
-function toggleNavbar() {
-    var navbar = document.querySelector('.navbar');
-    navbar.classList.toggle('active');
+    loadContent("inicio");
 }
 
-function closeNavbarOutsideClick(event) {
-    var navbar = document.querySelector('.navbar');
-    var icon = document.querySelector('#navbar-icon');
+function toggleCollapse(){
+    
+    let hidden = document.getElementsByClassName("hidd");
 
-    if (!navbar.contains(event.target) && event.target !== icon) {
-        navbar.classList.remove('active');
+    collapse = !collapse;
+
+    let nav = document.getElementsByClassName("sidenav")[0];
+    if (collapse) {        
+        nav.classList.add("sidenav-collapsed");
+
+        hidden[0].classList.remove("d-none");
+        hidden[1].classList.remove("d-none");
+        
+    } else {
+        nav.classList.remove("sidenav-collapsed");
+       
+        hidden[0].classList.add("d-none");
+        hidden[1].classList.add("d-none");
     }
+
+    cargarMenu();
+    
 }
 
-function eliminarCache() {
-    localStorage.clear();
+function closeSidenav(){
+    collapse = true;
+
+    toggleCollapse();
 }
 
-function animacion() {
-    document.getElementById("contenedor-main").classList.add("animate__animated");
-    document.getElementById("contenedor-main").classList.add("animate__fadeOut");
+function cargarMenu(){
+
+    var sidenav = document.getElementsByClassName("sidenav-nav")[0];
+
+    let items = "";
+
+    navData.forEach(item => {
+        items += `
+            <li class='sidenav-nav-item'>
+                <a class='sidenav-nav-link' onclick="loadContent('${item.btn}')">
+                    <i class='sidenav-link-icon ${item.icon}'></i>
+                    <span class='sidenav-link-text ${!collapse ? 'd-none' : ''}'>
+                        ${item.label}
+                    </span>
+                </a>
+            </li>
+        `;
+    });
+
+    let close = `<li class="sidenav-nav-item">
+                    <a class="sidenav-nav-link">
+                        <i class="fas fa-times sidenav-link-icon icono"></i>
+                        <span class='sidenav-link-text ${!collapse ? 'd-none' : ''}'>
+                            Cerrar Sesión
+                        </span>
+                    </a>
+                </li>`;
+
+    sidenav.innerHTML = items + close;
 }
 
-document.addEventListener('click', closeNavbarOutsideClick);
+function loadContent(opcion) {   
+
+    let op = menuItem[opcion];
+
+    fetch(op.cssFile)
+        .then(response => response.text())
+        .then(css => {
+            
+            removeScripts("body style");
+
+            const styleLink = document.createElement('style');            
+            styleLink.textContent = css;
+            document.body.appendChild(styleLink);
+   
+            return fetch(op.htmlFile)                       
+        })
+        .then(res => {return res.text()})
+        .then(htmlContent => {
+            
+            setTimeout(() => {
+                document.getElementById('moduleBox').innerHTML = htmlContent; 
+            }, 1000);
+
+            import(op.jsFile)
+            .then(ctr => {
+                controller = ctr;
+                
+                controller.inicializar();
+            });
+            
+        })
+        .catch(error => {
+            console.error('Error al cargar dinámicamente:', error);
+        });
+}
+
+function removeScripts(selector) {
+    const scripts = document.querySelectorAll(selector);
+    scripts.forEach(script => script.parentNode.removeChild(script));
+}
+
+
+

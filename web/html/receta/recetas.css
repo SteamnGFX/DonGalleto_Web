@@ -1,0 +1,679 @@
+@import url("../../css/main.css");
+
+/* RECETAS */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.titulos {    
+    text-align: center;
+    font-family: "BrightRetro", sans-serif;
+    font-size: 60px;    
+    position: absolute;
+    top: 8%;
+    width: 100%;
+}
+
+.titulos-secundarios {
+    font-family: "Lato Black";
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.btnRegresar {
+    background-color: var(--clr-amarillo2);
+    border: none;
+    border-radius: .8rem;
+    
+    cursor: pointer;    
+    outline: none;
+    
+    position: absolute;
+    top: 20px;
+    left: 30px;
+    
+    width: auto;
+    padding: 13px 23px;
+
+   
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btnRegresar span{
+    font-family: sans-serif;
+    font-weight: 400;
+    text-align: center;
+    color: #000;
+    font-size: 14px;
+}
+
+.btnRegresar:focus-visible {
+  box-shadow: #222222 0 0 0 2px, rgba(255, 255, 255, 0.8) 0 0 0 4px;
+  transition: box-shadow .2s;
+}
+
+.btnRegresar:active {
+  background-color: var(--clr-amarillo);  
+  transform: scale(.90);
+}
+
+.contenedor {    
+    background-color: var(--clr-blanco);
+    position: relative;
+    width: 100%;
+    height: 100vh; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.contenedor-recetas{
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 30%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;  
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.card-receta {
+    background-color: white; 
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 100%;
+    border-radius: 0.8rem;
+    box-shadow: 0 0 15px 2px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition-duration: .2s;
+}
+
+.card-receta:hover {
+    transform: scale(1.02);
+    background-color: #bebebec3;
+}
+
+.infoGalleta span {
+    font-family: "Open Sans ExtraBold";
+    font-size: 20px;    
+    text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-receta .infoGalleta{
+    display: flex;
+    justify-content: space-between;    
+    margin-bottom: 15px;
+    width: 100%;
+    padding: 0 20px;
+}
+
+.infoGalleta .btnVer{
+    background-color: var(--clr-naranja);
+    color: white;    
+    border-radius: .3rem;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1);
+}
+
+.btnVer:hover{
+    background-color: #ff734cc7;
+}
+
+.card-receta .imgGalleta{
+    width: 90%;
+    height: 70%;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1);
+}
+
+.imgGalleta img{
+    width: 100%;
+    height: 100%;    
+}
+
+.botones {
+    position: absolute;
+    top: 20%;
+    left: 25px;
+    width: 30%;
+    height: 40px;
+}
+
+.btn-agregar {
+  
+    width: 100%;
+    height: 100%;
+    background-color: var(--clr-verdeBTN);
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: .3s ease all;
+    border-radius: 50px;
+    position: relative;
+    overflow: hidden;  
+
+}
+
+.btn-agregar span
+ {
+    font-family: "Open Sans Regular", sans-serif;
+    font-size: 16px;
+    position: relative;
+    z-index: 2;
+    transition: .3s ease all;
+}
+
+.btn-agregar::after {
+    content: "";
+    width: 100%;
+    height: 200%;
+    position: absolute;
+    top: -200%;
+    left: 0;
+    background-color: var(--clr-verde-hover);
+    z-index: 1;
+    border-bottom-left-radius: 100%;
+    border-bottom-right-radius: 100%;
+    transition: .3s ease-in all;
+}
+
+.btn-agregar:hover::after {
+    top: 0;
+}
+
+.btn-agregar:active::after {
+    background-color: var(--clr-verde-active);
+}
+
+.btn-agregar:disabled {
+    background-color: var(--clr-verde-disabled);
+}
+
+/************* RECETA *****************/
+
+.btn-modificar{
+    width: 20%;
+    height: 40px;
+    background-color: var(--clr-amarillo2);
+    font-size: 15px;
+    font-weight: 700;
+    
+    border: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: .3s ease all;
+    border-radius: 50px;
+    position: relative;
+    overflow: hidden;
+    margin: 20px 0px;
+    box-shadow: 0 0 15px 2px rgba(0, 0, 0, 0.2);
+}
+
+.btn-modificar span {
+    font-family: "Open Sans Regular", sans-serif;
+    font-size: 15px;
+    color: white;
+    position: relative;
+    z-index: 2;
+    transition: .3s ease all;
+}
+
+.btn-modificar::after {
+    content: "";
+    width: 100%;
+    height: 200%;
+    position: absolute;
+    top: -200%;
+    left: 0;
+    background-color: var(--clr-amarillo-hover);
+    z-index: 1;
+    border-bottom-left-radius: 100%;
+    border-bottom-right-radius: 100%;
+    transition: .3s ease-in all;
+}
+
+.btn-modificar:hover::after {
+    top: 0;
+}
+
+.btn-modificar:active::after {
+    background-color: var(--clr-amarillo-hover);
+}
+
+.btn-modificar:disabled {
+    background-color: var(--clr-amarillo-hover);
+}
+
+.infoReceta{
+    width: 100%;
+}
+
+
+/*********** CREAR RECETA ***************/
+
+.box {    
+    background-color: var(--clr-blanco);
+    position: relative;
+    width: 100%;
+    height: 100vh; 
+    display: flex;    
+    flex-direction: column;
+    align-items: center;
+}
+
+.file-input-container {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+}
+
+.file-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.file-input-label {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: var(--clr-verde-active);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    font-family: "Open Sans Bold";
+}
+
+#preview-container {
+    max-width: 350px;    
+    border-radius: .8rem;
+    overflow: hidden;
+    margin-bottom: 10px;   
+}
+
+#image-preview {
+    max-width: 100%;
+    max-height: 300px;
+    display: block;
+    box-shadow: 0 0 15px 2px rgba(0, 0, 0, 0.2);
+}
+
+.form-group {
+    position: relative;
+    margin-bottom: 1.5em;
+    width: 100%;
+}
+
+.form-group label {
+    position: absolute;
+    top: 5px;
+    left: 0;
+    padding-left: 10px;
+    transition: transform 0.3s, font-size 0.3s;
+    transform-origin: 0 0;
+    font-family: "Open sans Bold";
+    font-size: 15px;
+}
+
+.form-group input:focus + label,
+.form-group input:not(:placeholder-shown) + label {
+    transform: translateY(-1.7em) scale(.9);
+}
+
+.form-group input {
+    width: 100%;
+    height: 30px;
+    font-size: 14px;
+    border: none;
+    padding-left: 10px;
+    border-radius: .8rem;
+    box-shadow: 0.063rem 0 1.25rem 0 rgba(0, 0, 0, .3);
+}
+
+.form-group input:focus {
+    outline: none;
+    border: 1px solid var(--clr-amarillo2);
+}
+
+.form-group input:focus + label{
+    color: var(--clr-amarillo2);
+}
+
+.txtDetalles{
+    resize: none;
+    outline: none;
+    border: none;
+    font-size: 14px;
+    padding: 10px;
+    font-family: "Lato Regular";
+    border-radius: .8rem;
+    width: 100%;
+    height: 250px;
+    box-shadow: 0 0 15px 2px rgba(0, 0, 0, 0.3);
+}
+
+.inputs{
+    width: 80%;
+}
+
+.box-summary{
+    padding: 20px;
+    display: flex;
+    align-items: end;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+    height: 90%;
+}
+
+.box-add{
+    width: 100%;   
+    padding: 10px 20px;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.add-group{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.detalle-group{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.btnAdd{
+    background-color: var(--clr-verde-active);
+    font-size: 20px;
+    color: white;
+    width: 35px;
+    height: 40px;
+    border: none;
+    border-radius: 0 .8rem .8rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.btnAdd:hover{
+    background-color: var(--clr-verde);
+}
+
+.ingredientes{
+    display: flex; 
+    flex-direction: column;
+    height: auto;
+    width: 40%;
+}
+.pasos{
+    display: flex;
+    flex: 1 0 1;
+    flex-direction: column;
+    height: auto;
+    width: 40%;
+}
+.ingredientes h3,
+.pasos h3{
+    font-family: "Open sans Bold";
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5px;
+}
+.txtArea{
+    outline: none;
+    border: none;
+    padding: 10px;
+    font-family: "Lato Regular";
+    font-size: 14px;
+    width: 100%;
+    height: 40px;
+    resize: none;
+    border-radius: 0.8rem 0 0 0.8rem;
+    box-shadow: 0 0 15px 2px rgba(0, 0, 0, 0.2);
+}
+
+.boton {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    
+}
+
+.btn-guardar {
+    width: 20%;
+    height: 40px;
+    background-color: var(--clr-verde);
+    font-size: 20px;
+    font-weight: 700;
+    
+    border: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: .3s ease all;
+    border-radius: 50px;
+    position: relative;
+    overflow: hidden;
+    margin: 20px 0px;
+    box-shadow: 0 0 15px 2px rgba(0, 0, 0, 0.2);
+}
+
+.btn-guardar span {
+    font-family: "Open Sans Regular", sans-serif;
+    font-size: 15px;
+    color: white;
+    position: relative;
+    z-index: 2;
+    transition: .3s ease all;
+}
+
+.btn-guardar::after {
+    content: "";
+    width: 100%;
+    height: 200%;
+    position: absolute;
+    top: -200%;
+    left: 0;
+    background-color: var(--clr-verde-hover);
+    z-index: 1;
+    border-bottom-left-radius: 100%;
+    border-bottom-right-radius: 100%;
+    transition: .3s ease-in all;
+}
+
+.btn-guardar:hover::after {
+    top: 0;
+}
+
+.btn-guardar:active::after {
+    background-color: var(--clr-verde-active);
+}
+
+.btn-guardar:disabled {
+    background-color: var(--clr-verde-disabled);
+}
+
+/****************************************************************/
+
+@media screen and (max-width: 1000px) {
+    .file-input-label {
+        text-align: center;
+        font-size: 15px;
+    }
+
+    .btn-guardar {
+        width: 50%;
+    }
+
+    .contenedor-recetas{
+        grid-template-columns: 1fr;
+    }
+
+    .botones{
+        margin-top: 20px;
+        width: 100%;
+    }
+
+    .btnRegresar {
+        padding: 10px 20px;
+    }
+    
+    .btnRegresar span{
+        font-size: 14px;
+    }
+    
+}
+
+
+@media screen and (max-width: 800px) {
+
+    .btnRegresar {
+        padding: 10px 20px;
+    }
+    
+    .btnRegresar span{
+        font-size: 14px;
+    }
+
+    .contenedor-recetas{
+        grid-template-columns: 1fr;
+    }
+
+    .titulos{
+        font-size: 40px;
+        margin-top: 30px;
+    }
+
+    .file-input-container {        
+        margin-bottom: 10px;
+        overflow: visible;
+    }
+    
+    #preview-container {
+        max-width: 250px;    
+    }
+    
+    #image-preview {
+        max-height: 200px;
+    }
+    
+    .inputs{        
+        width: 100%;
+    }
+    
+    .box-summary{   
+        margin-top: 30%;
+        flex-direction: column;
+        align-items: center;
+        height: 100%;
+    }
+    
+    .box-add{
+        margin: auto;
+        flex-direction: column;
+    }
+    
+    .txtDetalles{
+        height: 180px;
+    }
+    
+    .detalle-group{
+        flex-direction: column;
+    }
+    
+    .ingredientes{   
+        margin-top: 35px;
+        flex-direction: column;
+        width: 100%;
+    }
+    .pasos{
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .boton {
+        width: 100%;
+        margin: 0 auto;
+        text-align: center;
+        
+    }
+    
+    .btn-guardar {
+        width: 90%;
+    }
+
+    .btn-modificar {
+        width: 90%;
+    }
+
+    .botones{
+        margin-top: 20px;
+        width: 90%;
+    }
+    
+}
+
+/*
+
+@media screen and (max-width: 400px) {
+    .titulos {
+        font-size: 48px;
+    }
+
+    .contenedor1 img {
+        width: 60%;
+    }
+
+    .btn-agregar, .btn-guardar {
+        width: 90%;
+        height: 80px;
+        font-size: 16px;
+        font-weight: 700;
+        font-family: "Open Sans Regular", sans-serif;
+    }
+
+    .btn-agregar::after, .btn-guardar::after {
+        width: 100%;
+        height: 200%;
+    }
+    
+} */

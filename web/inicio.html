@@ -1,54 +1,47 @@
 <!DOCTYPE html>
 <html lang="es">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="icon" href="img/icono.png" type="image/x-icon">
-        <!-- FONT AWESOME -->
-        <link href="Assets/all.min.css" rel="stylesheet" type="text/css"/>
-        <!-- -->
-        <link rel="stylesheet" href="css/styles.css">
-        <link href="Assets/animate.min.css" rel="stylesheet" type="text/css"/>
-        <title>SIG - Inicio</title>
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="img/icono.png" type="image/x-icon">
+    <!-- FONT AWESOME -->
+    <link href="Assets/fontAwesome/all.min.css" rel="stylesheet" type="text/css" />
+    <!-- Estilos -->
+    <link rel="stylesheet" href="css/sideNav.css">    
+    <!-- Animate -->
+    <link href="Assets/animate/animate.min.css" rel="stylesheet" type="text/css" />
+    <!-- SweetAlert -->
+    <link rel="stylesheet" href="Assets/sweetalert/sweetalert2.min.css" type="text/css">
+    
+    <title>SIG - Inicio</title>
 
-    </head>
+</head>
 
-    <body id="contenedor-main" class="">
-        <i class="fas fa-bars" id="navbar-icon" onclick="toggleNavbar();"></i>
-        <ul class="navbar animate__animated animate__fadeInDown">
-            <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-home"></i> Inicio</a></li>
-            <li class="nav-item"><a class="nav-link" href="html/receta/recetas.html"><i class="fas fa-book-open"></i>
-                    Recetas</a></li>
-            <li class="nav-item"><a class="nav-link" href="html/inventario/inventario.html"><i class="fas fa-cookie"></i>
-                    Inventario</a></li>
-            <li class="nav-item"><a class="nav-link" href="html/materia/materias.html"><i class="fas fa-seedling"></i>
-                    Materia Prima</a></li>
-            <li class="nav-item"><a class="nav-link" href="html/venta/orden.html"><i class="fas fa-shopping-cart"></i>
-                    Venta</a></li>
-            <li class="nav-item"><a class="nav-link" href="html/corte/corte.html"><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 640 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M36.8 192H603.2c20.3 0 36.8-16.5 36.8-36.8c0-7.3-2.2-14.4-6.2-20.4L558.2 21.4C549.3 8 534.4 0 518.3 0H121.7c-16 0-31 8-39.9 21.4L6.2 134.7c-4 6.1-6.2 13.2-6.2 20.4C0 175.5 16.5 192 36.8 192zM64 224V384v80c0 26.5 21.5 48 48 48H336c26.5 0 48-21.5 48-48V384 224H320V384H128V224H64zm448 0V480c0 17.7 14.3 32 32 32s32-14.3 32-32V224H512z"/></svg> Corte</a></li>
-            <li class="nav-item"><a class="nav-link" id="cerrarSesion2"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a>
-            </li>
-        </ul>
+<body>    
 
-        <div class="contenedor">
-            <div class="contenedor-cards">
-                <div class="animate__animated  animate__backInLeft card" id="card-inventario"><label>INVENTARIO <i class="fas fa-cookie"></i></label></div>
-                <div class="card animate__animated  animate__backInRight" id="card-materia"><label>MATERIA PRIMA <i class="fas fa-seedling"></i></label>
-                </div>
-                <div class="card animate__animated  animate__backInLeft" id="card-venta"><label>VENTA <i class="fas fa-shopping-cart"></i></label></div>
-                <div class="card animate__animated  animate__backInRight" id="card-corte"><label>CORTE <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 640 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M36.8 192H603.2c20.3 0 36.8-16.5 36.8-36.8c0-7.3-2.2-14.4-6.2-20.4L558.2 21.4C549.3 8 534.4 0 518.3 0H121.7c-16 0-31 8-39.9 21.4L6.2 134.7c-4 6.1-6.2 13.2-6.2 20.4C0 175.5 16.5 192 36.8 192zM64 224V384v80c0 26.5 21.5 48 48 48H336c26.5 0 48-21.5 48-48V384 224H320V384H128V224H64zm448 0V480c0 17.7 14.3 32 32 32s32-14.3 32-32V224H512z"/></svg></label></div>
-                <div class="card animate__animated  animate__backInUp" id="card-recetas"><label>RECETAS <i class="fas fa-book-open"></i></label></div>
+    <div class="nomUser animate__animated  animate__backInRight">
+        <span id="txtNomUser">Diego Alonso</span>
+    </div>
 
-            </div>
+    <div class="sidenav animate__animated  animate__bounceInLeft">
+        <div class="logo-container">
+            <button class="logo" onclick="toggleCollapse();">DG</button>
+            <div class="logo-text hidd d-none">Don Galleto</div>
+            <button class="btnClose hidd d-none" onclick="closeSidenav()">
+                <i class="fas fa-times icono"></i>
+            </button>
         </div>
+        <ul class="sidenav-nav"></ul>
+    </div>
 
-        <button id="cerrarSesion1" class="btn cerrarSesion animate__animated animate__fadeInLeft">
-            <i class="fas fa-sign-out-alt"></i>
-        </button>
+    <div id="moduleBox"></div>
 
-        <script src="js/script.js"></script>
-        <script src="Assets/all.min.js"></script>
-    </body>
+    <script src="js/script.js"></script>
+    <script src="Assets/fontAwesome/all.min.js"></script>
+    <script src="Assets/sweetalert/sweetalert2.min.js"></script>
+    
+</body>
 
 </html>

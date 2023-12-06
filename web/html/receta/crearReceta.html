@@ -1,59 +1,51 @@
-<!DOCTYPE html>
-<html lang="es">
+<div class="box">
+    <a id="btnRegresar" class="btnRegresar" onclick="if (controller.opcion == 'ver') { controller.loadContent('ver') } else loadContent('recetas')">        
+        <span><i class="fas fa-arrow-left"></i> Regresar</span>
+    </a>
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="icon" href="../../img/icono.png" type="image/x-icon">
-        <link rel="stylesheet" href="styles.css">
-        <link href="../../Assets/all.min.css" rel="stylesheet" type="text/css"/>
-        <title>SIG - Crear Receta</title>
-    </head>
+    <h1 class="titulos">AÑADIR RECETA</h1>
 
-    <body>
-        <i class="fas fa-bars" id="navbar-icon" onclick="toggleNavbar();"></i>
-        <ul class="navbar">
-            <li class="nav-item"><a class="nav-link" href="../../inicio.html"><i class="fas fa-home"></i> Inicio</a></li>
-            <li class="nav-item"><a class="nav-link" href="../receta/recetas.html"><i class="fas fa-book-open"></i>
-                    Recetas</a></li>
-            <li class="nav-item"><a class="nav-link" href="../inventario/inventario.html"><i class="fas fa-cookie"></i>
-                    Inventario</a></li>
-            <li class="nav-item"><a class="nav-link" href="../materia/materias.html"><i class="fas fa-seedling"></i>
-                    Materia Prima</a></li>
-            <li class="nav-item"><a class="nav-link" href="../venta/orden.html"><i class="fas fa-shopping-cart"></i>
-                    Venta</a></li>
-            <li class="nav-item"><a class="nav-link" href="../corte/corte.html"><i class="fas fa-cut"></i> Corte</a></li>
-            <li class="nav-item"><a class="nav-link" id="cerrarSesion"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a>
-            </li>
-        </ul>
-        <button id="btnRegresar" class="btnRegresar">← Regresar</button>
-
-        <h1 class="titulos">AÑADIR RECETA</h1>
-
-        <div class="contenedor1">
-            <img src="../../img/logo.png" alt="">
-            <div class="inputs">
-                <input type="text" name="" id="" placeholder="HAAAAA">
-                <textarea name="" id="" cols="30" rows="10" placeholder="AAAAAAAA"></textarea>
+    <div class="box-summary">
+        <div class="file-input-container">              
+            <div id="preview-container" style="display: none;">
+                <img id="image-preview" alt="Preview">
+            </div>
+            <input type="file" class="file-input" id="fileInput" accept="image/*" onchange="controller.previewImage(event)">
+            <label for="fileInput" class="file-input-label">Seleccionar Archivo</label>
+        </div>
+        
+        <div class="inputs">
+            <div class="form-group">
+                <input type="text" id="rName" name="rName" required placeholder="">
+                <label for="rName">Nombre Receta</label>
+            </div>            
+            <div class="detalle-group">
+                <textarea id="txtDetallesIngredientes" class="txtDetalles" placeholder="Ingredientes"></textarea>
+                <textarea id="txtDetallesPasos"  class="txtDetalles" placeholder="Pasos"></textarea>
             </div>
         </div>
+    </div>
 
-        <div class="contenedor2">
-            <div class="ingredientes">
-                <input type="text" placeholder="INGREDIENTES">
-                <textarea name="" id="" cols="30" rows="10" placeholder="INGREDIENTES"></textarea>
+    <div class="box-add">
+        <div class="ingredientes">
+            <h3>INGREDIENTES</h3>
+            <div class="add-group">
+                <textarea id="txtIngredientes" class="txtArea" placeholder="INGREDIENTES"></textarea>
+                <button class="btnAdd" id="addIngredientes"><i class="fas fa-plus"></i></button>
             </div>
-            <div class="pasos">
-                <input type="text" placeholder="PASOS">
-                <textarea name="" id="" cols="30" rows="10" placeholder="PASOS"></textarea>
+
+        </div>
+        <div class="pasos">
+            <h3>PASOS</h3>
+            <div class="add-group">
+                <textarea id="txtPasos" class="txtArea" placeholder="PASOS"></textarea>
+                <button class="btnAdd" id="addIngredientes"><i class="fas fa-plus"></i></button>
             </div>
+            
         </div>
+    </div>
 
-        <div class="boton">
-            <button class="btn-guardar"><span>Guardar <i class="fas fa-save"></i></span></button>
-        </div>
-        <script src="../../Assets/all.min.js"></script>
-        <script src="script.js"></script>
-    </body>
-
-</html>
+    <div class="boton">
+        <button class="btn-guardar"><span>Guardar <i class="fas fa-save"></i></span></button>
+    </div>
+</div>

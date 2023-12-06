@@ -41,16 +41,21 @@ public class RESTLog {
             user = ctrUsuario.login(user.getNombre_usuario(), user.getContrasenia());
             
             if (user != null) {
-                        out = new Gson().toJson(user);
+                out = new Gson().toJson(user);
             } else {
                  out = """
                       {"error":"Usuario/contraseña no son válidos!"}
                       """;
             }
 
-        } catch (Exception ex) {
-            Logger.getLogger(RESTLog.class.getName()).log(Level.SEVERE, null, ex);
-            out = "{\"exception\":\"Error del servidor.\"}";
+        } catch (Exception ex) {            
+            out = """
+                    {
+                        "exception": "Error del servidor",
+                        "message" : "%s"
+                    }
+                  """;
+            out = String.format(out, ex.getMessage());
         }
 
         return Response.status(Response.Status.OK).entity(out).build();

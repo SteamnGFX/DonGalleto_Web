@@ -1,70 +1,42 @@
-<!DOCTYPE html>
-<html lang="es">
+<div class="box">
+    <a id="btnRegresar" class="btnRegresar" onclick="loadContent('recetas');">        
+        <span><i class="fas fa-arrow-left"></i> Regresar</span>
+    </a>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="../../img/icono.png" type="image/x-icon">
-    <link rel="stylesheet" href="styles.css">
-    <link href="../../Assets/all.min.css" rel="stylesheet" type="text/css"/>
-    <title>SIG - Receta</title>
-</head>
-
-<body>
-    <i class="fas fa-bars" id="navbar-icon" onclick="toggleNavbar();"></i>
-    <ul class="navbar">
-        <li class="nav-item"><a class="nav-link" href="../../inicio.html"><i class="fas fa-home"></i> Inicio</a></li>
-        <li class="nav-item"><a class="nav-link" href="../receta/recetas.html"><i class="fas fa-book-open"></i>
-                Recetas</a></li>
-        <li class="nav-item"><a class="nav-link" href="../inventario/inventario.html"><i class="fas fa-cookie"></i>
-                Inventario</a></li>
-        <li class="nav-item"><a class="nav-link" href="../materia/materias.html"><i class="fas fa-seedling"></i>
-                Materia Prima</a></li>
-        <li class="nav-item"><a class="nav-link" href="../venta/orden.html"><i class="fas fa-shopping-cart"></i>
-                Venta</a></li>
-        <li class="nav-item"><a class="nav-link" href="../corte/corte.html"><i class="fas fa-cut"></i> Corte</a></li>
-        <li class="nav-item"><a class="nav-link" id="cerrarSesion"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a>
-        </li>
-    </ul>
-         <button id="btnRegresar" class="btnRegresar">← Regresar</button>
-   
     <h1 class="titulos">RECETAS GALLETA XXX</h1>
 
-    <div class="contenedor-ingredientes">
-        <div class="ingredientes">
-            <h2 class="titulos-secundarios">Ingredientes</h2>
+    <div class="box-summary">        
 
-            <ul class="lista-ingredientes">
-                <li class="ingrediente">----------------</li>
-                <li class="ingrediente">----------------</li>
-                <li class="ingrediente">----------------</li>
-                <li class="ingrediente">----------------</li>
-            </ul>
-            <ul class="lista-ingredientes">
-                <li class="ingrediente">----------------</li>
-                <li class="ingrediente">----------------</li>
-                <li class="ingrediente">----------------</li>
-                <li class="ingrediente">----------------</li>
-            </ul>
+        <div class="file-input-container">              
+            <div id="preview-container" style="display: none;">
+                <img id="image-preview" alt="Preview">
+            </div>            
         </div>
-
-        <div>
-            <img src="../../img/icono.png" alt="">
-        </div>
-    </div>
-
-    <div class="contenedor-receta">
-        <h2 class="titulos-secundarios">Receta</h2>
         
-        <ol class="receta-pasos">
-            <li class="paso">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem veritatis eligendi vitae magnam consequatur incidunt debitis quibusdam praesentium sit blanditiis quia autem, ipsum, adipisci aspernatur harum in earum quisquam. Veniam?</li>
-            <li class="paso">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem veritatis eligendi vitae magnam consequatur incidunt debitis quibusdam praesentium sit blanditiis quia autem, ipsum, adipisci aspernatur harum in earum quisquam. Veniam?</li>
-            <li class="paso">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem veritatis eligendi vitae magnam consequatur incidunt debitis quibusdam praesentium sit blanditiis quia autem, ipsum, adipisci aspernatur harum in earum quisquam. Veniam?</li>
-            <li class="paso">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem veritatis eligendi vitae magnam consequatur incidunt debitis quibusdam praesentium sit blanditiis quia autem, ipsum, adipisci aspernatur harum in earum quisquam. Veniam?</li>
-        </ol>
+        <div class="inputs">
+           
+            <div class="form-group">
+                <input type="text" id="rName" name="rName" required placeholder="">
+                <label for="rName">Nombre Receta</label>
+            </div>            
+            
+            <div class="detalle-group">
+                <div class="infoReceta">
+                    <h2 class="titulos-secundarios">Ingredientes</h2>
+                    <textarea id="txtDetallesIngredientes" class="txtDetalles" placeholder="Ingredientes"></textarea>
+                </div>
+                <div class="infoReceta">
+                    <h2 class="titulos-secundarios">Receta</h2>
+                    <textarea id="txtDetallesPasos"  class="txtDetalles" placeholder="Pasos"></textarea>
+                </div>
+                
+            </div>
+        </div>
     </div>
-    <script src="../../Assets/all.min.js"></script>
-    <script src="script.js"></script>
-</body>
 
-</html>
+    <div class="boton">
+        <button class="btn-modificar" onclick="controller.loadContent('agregar','modificar')">
+            <span>Modificar <i class="fas fa-pencil-alt"></i></span>
+        </button>
+    </div>
+</div>

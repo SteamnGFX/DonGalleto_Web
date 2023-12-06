@@ -1,0 +1,86 @@
+@font-face {
+  font-family: 'BrightRetro';
+  src: url('../fonts/bright_retro/brightRetro.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Lato Black';
+  src: url('../fonts/lato/Lato-Black.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Lato Bold';
+  src: url('../fonts/lato/Lato-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Lato Regular';
+  src: url('../fonts/lato/Lato-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Lato Light';
+  src: url('../fonts/lato/Lato-Light.ttf') format('truetype');
+}
+
+
+@font-face {
+  font-family: 'Open Sans ExtraBold';
+  src: url('../fonts/open_sans/static/OpenSans-ExtraBold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Open Sans Bold';
+  src: url('../fonts/open_sans/static/OpenSans-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Open Sans Regular';
+  src: url('../fonts/open_sans/static/OpenSans-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Open Sans Light';
+  src: url('../fonts/open_sans/static/OpenSans-Light.ttf') format('truetype');
+}
+
+/* Agrega más @font-face según sea necesario para cada variante de Lato */
+
+:root {
+  --clr-rojo: #FF6464;
+  --clr-rojo-hover: #FF9D9D;
+  --clr-rojo-active: #FF3131;
+  --clr-rojo-disabled: #FF0F0F;
+
+  --clr-amarillo: #FDC512;
+  --clr-amarillo-hover: #FFDE59;
+  --clr-amarillo-active: #ECAB06;
+  --clr-amarillo-disabled: #86480D;
+
+  --clr-verdeBTN: #7ED957;
+  --clr-verde-hover: #95E472;
+  --clr-verde-active: #50BB27;
+  --clr-verde-disabled: #295A1A;
+
+  --clr-cafe: #46220F;
+  --clr-naranja: #D96C06;
+  --clr-verdeMenta: #00A878;
+  --clr-azul: #003469;
+
+  --clr-negro: #373737;
+  --clr-gris1: #646464;
+  --clr-gris2: #979797;
+  --clr-gris3: #CACACA;
+  --clr-blanco: #F2F2F2;
+  --clr-blanco2: #F6F6F6;
+
+  --clr-verde: #0c3b2e;
+  --clr-verde2: #6d9773;
+  --clr-cafe: #bb8a52;
+  --clr-amarillo2: #ffba00;
+  --clr-amarillo-hover: rgba(236, 194, 76, 0.8);
+
+  --clr-naranja: #ff724c;
+  --clr-whiteT: #f4f4f8;
+
+}
