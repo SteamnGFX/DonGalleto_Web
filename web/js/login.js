@@ -26,6 +26,7 @@ function togglePassword(icon) {
     }
 }
 
+
 function iniciarSersion() {
     document.getElementById("txtBtnLogin").classList.add("d-none");
     document.getElementById("loader-login").classList.remove("d-none");
