@@ -87,6 +87,7 @@ function createDivsFromGalletas(galletas) {
                     '<p style="font-weight: 700;">' + galleta.cantidad + '</p>' +
                     '</div>' +
                     '<p>' + galleta.nombre + '</p>' +
+                    '<p> $  ' + galleta.precio + '</p>' +
                     '</div>' +
                     '</div>';
             cuerpo += registro;
@@ -115,34 +116,46 @@ function agregarGalletaOrden(idGalleta) {
     galletaClick(idGalleta);
 }
 
-function actualizarOrdenGalletas(gramos) {
+function actualizarOrdenGalletas() {
     let cuerpo = "";
-    let registro = "";
-    let tipoGalleta = "";
-
-
+    let registro = ""; 
+    let tipoGalleta = ""; //trabajando
 
     ordenGalletas.forEach(function (galleta) {
         if (galleta.tipo === 1) {
             tipoGalleta = "Pieza";
             registro =
-                '<p>' + galleta.galleta.nombre + '<br><b> Tipo: </b>' + tipoGalleta + '  ' +
-                '<br><b> Cantidad: </b> ' + galleta.cantidad + ' <br><i class="fa-solid fa-trash" style="color:red; cursor:pointer;" onclick="eliminarGalleta(' + galleta.galleta.idGalleta + ')"></i></p>';
-        cuerpo += registro;
+                    '<p>' + galleta.galleta.nombre + '<br><b> Tipo: </b>' + tipoGalleta + '  ' +
+                    '<br><b> Cantidad: </b> ' + galleta.cantidad + ' <br><i class="fa-solid fa-trash" style="color:red; cursor:pointer;" onclick="eliminarGalleta(' + galleta.galleta.idGalleta + ')"></i></p>';
+            cuerpo += registro;
         } else if (galleta.tipo === 2) {
-            
             tipoGalleta = "Gramo";
             registro =
-                '<p>' + galleta.galleta.nombre + '<br><b> Tipo: </b>' + tipoGalleta + '  ' +
-                '<br><b> Cantidad: </b> ' + galleta.cantidad + ' <br>'+
-                'Gramos: ' + gramos + '<br><i class="fa-solid fa-trash" style="color:red; cursor:pointer;" onclick="eliminarGalleta(' + galleta.galleta.idGalleta + ')"></i> </p>';
-        cuerpo += registro;
+                    '<p>' + galleta.galleta.nombre + '<br><b> Tipo: </b>' + tipoGalleta + '  ' +
+                    '<br><b> Cantidad: </b> ' + galleta.cantidad + ' <br>' +
+                    'Gramos: ' + galleta.gramos + '<br><i class="fa-solid fa-trash" style="color:red; cursor:pointer;" onclick="eliminarGalleta(' + galleta.galleta.idGalleta + ')"></i> </p>';
+            cuerpo += registro;
 
         } else if (galleta.tipo === 3) {
             tipoGalleta = "Peso Dinero";
+            registro =
+                    '<p>' + galleta.galleta.nombre + '<br><b> Tipo: </b>' + tipoGalleta + '  ' +
+                    '<br><b> Cantidad: </b> ' + galleta.pesoDinero + ' <br><i class="fa-solid fa-trash" style="color:red; cursor:pointer;" onclick="eliminarGalleta(' + galleta.galleta.idGalleta + ')"></i></p>';
+            cuerpo += registro;
 
         } else if (galleta.tipo === 4) {
             tipoGalleta = "Caja";
+            let tipoCaja = "";
+            if (galleta.cantidad === 6) {
+                tipoCaja = "Media Docena";
+            } else if (galleta.cantidad === 12) {
+                tipoCaja = "Docena";
+            }
+            registro =
+                    '<p>' + galleta.galleta.nombre +
+                    '<br><b> Cantidad: </b> ' + galleta.cantidad + ' <br>' +
+                    'Tipo de Caja: ' + tipoCaja + '<br><i class="fa-solid fa-trash" style="color:red; cursor:pointer;" onclick="eliminarGalleta(' + galleta.galleta.idGalleta + ')"></i> </p>';
+            cuerpo += registro;
 
         }
 
@@ -156,6 +169,7 @@ function actualizarOrdenGalletas(gramos) {
     if (ordenLista.offsetHeight > 450) {
         flechainf.classList.remove('d-none');
     }
+    calcularPrecio();
 }
 
 
@@ -164,7 +178,36 @@ function iniciarCobro() {
     if (ordenGalletas.length === 0) {
         alerta("error", "¡No hay orden que cobrar!");
     } else {
-        cobrar();
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: "btn-success",
+                cancelButton: "btn-danger"
+            },
+            buttonsStyling: false
+        });
+        swalWithBootstrapButtons.fire({
+            title: "¿Estas seguro?",
+            text: "Estás por terminar la venta!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Terminar venta!",
+            cancelButtonText: "Cancelar",
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                cobrar();
+            } else if (
+                    /* Read more about handling dismissals below */
+                    result.dismiss === Swal.DismissReason.cancel
+                    ) {
+                swalWithBootstrapButtons.fire({
+                    title: "Cancelada",
+                    text: "Tu venta se ha cancelado.",
+                    icon: "error",
+                    confirmButtonText: "ACEPTAR",
+                });
+            }
+        });
     }
 }
 
@@ -186,12 +229,12 @@ function cobrar() {
             })
             .then(function (data) {
                 if (data.exception != null) {
-                    console.log('Error interno del servidor. Intente nuevamente más tarde.');
+                    alerta("error", 'Error interno del servidor. Intente nuevamente más tarde.');
                     return;
                 }
 
                 if (data.error) {
-                    alert("algo ha ocurrido");
+                    alerta("error", "algo ha ocurrido");
                 }
 
                 if (data.success) {
@@ -205,6 +248,7 @@ function cobrar() {
 function vaciarCarrito() {
     ordenGalletas = [];
     document.getElementById("ordenLista").innerHTML = '<p style="text-align: center; color:gray; font-style: italic;">Seleccione alguna galleta para iniciar la orden.</p>';
+    document.getElementById("txtTotalVenta").innerHTML = "0.0";
 }
 
 function flecha() {
@@ -331,64 +375,164 @@ function manejadorGalletas(idGalleta, idTipoVenta) {
 function seleccionarCantidad(orden, cantidadGalletaSeleccionada, idTipoVenta, peso) {
     if (idTipoVenta === 1) {
         (async () => {
+            const swalContent = document.createElement('div');
+            swalContent.innerHTML = `
+            <label for="swal-input1">Cantidad de venta</label>
+            <br>
+            <input type="text" id="swal-input1" style="width: 70%; margin-top: 2%;" maxlength="10" autocapitalize="off" autocorrect="off" onkeypress="return soloNumeros(event)" placeholder="Cantidad de piezas.">
+            `;
             const {value: cantidad} = await Swal.fire({
-                title: "INGRESE LA CANTIDAD",
-                input: "text",
-                inputLabel: "Cantidad de venta",
-                inputPlaceholder: "100",
-                inputAttributes: {
-                    maxlength: "10",
-                    autocapitalize: "off",
-                    autocorrect: "off"
+                title: "VENTA POR PIEZAS",
+                html: swalContent,
+                confirmButtonText: "ACEPTAR",
+                preConfirm: () => {
+                    const input = document.getElementById('swal-input1');
+                    const cantidad = input.value;
+
+                    if (cantidad) {
+                        if (cantidad > cantidadGalletaSeleccionada) {
+                            alerta("error", "No hay galletas suficientes");
+                            return false;
+                        } else {
+                            orden.cantidad = cantidad;
+                            ordenGalletas.push(orden);
+                            actualizarStockGalletas(orden.galleta.idGalleta, cantidad);
+                            // Actualizar la ordenGalletas original con la cantidad ingresada
+                            actualizarOrdenGalletas();
+                            return true;
+                        }
+                    } else {
+                        alerta("error", "Ingresar una cantidad de galletas");
+                        return false;
+                    }
                 }
             });
-
-            if (cantidad) {
-                if (cantidad > cantidadGalletaSeleccionada) {
-                    alerta("error", "No hay galletas suficientes");
-                } else {
-                    orden.cantidad = cantidad;
-                    ordenGalletas.push(orden);
-                    actualizarStockGalletas(orden.galleta.idGalleta, cantidad);
-                    // Actualizar la ordenGalletas original con la cantidad ingresada
-                    actualizarOrdenGalletas();
-                }
-            }
         })();
     }
     if (idTipoVenta === 2) {
         (async () => {
+            const swalContent = document.createElement('div');
+            swalContent.innerHTML = `
+            <label for="swal-input1">Cantidad de venta</label>
+            <br>
+            <input type="text" id="swal-input1" style="width: 70%;margin-top: 2%;" maxlength="10" autocapitalize="off" autocorrect="off" onkeypress="return soloNumeros(event)" placeholder="Cantidad de gramos.">
+        `;
+
             const {value: cantidad} = await Swal.fire({
                 title: "INGRESE LA CANTIDAD",
-                input: "text",
-                inputLabel: "Cantidad de venta",
-                inputPlaceholder: "100",
-                inputAttributes: {
-                    maxlength: "10",
-                    autocapitalize: "off",
-                    autocorrect: "off"
-                }
-            });
+                html: swalContent,
+                confirmButtonText: "ACEPTAR",
+                preConfirm: () => {
+                    const input = document.getElementById('swal-input1');
+                    const cantidad = input.value;
 
-            if (cantidad) {
-                let cantidadGramoGalleta = cantidadGalletaSeleccionada * peso;
-                if (cantidad > cantidadGramoGalleta) {
-                    alerta("error", "No hay galletas suficientes");
-                } else {
+
+                    let cantidadGramoGalleta = cantidadGalletaSeleccionada * peso;
+
+                    if (cantidad > cantidadGramoGalleta) {
+                        alerta("error", "No hay galletas suficientes");
+                        return false;
+                    }
+
+
+                    if (cantidad === "") {
+                        alerta("error", "Ingresar una cantidad de gramos!");
+                        return false;
+                    }
+
                     let galleta = galletas.find(g => g.idGalleta === orden.galleta.idGalleta);
-
                     let gramosVendidas = cantidad / galleta.peso;
                     let galletasVendidas = Math.ceil(gramosVendidas);
+                    
+                    orden.gramos = cantidad;  
 
                     orden.cantidad = galletasVendidas;
                     ordenGalletas.push(orden);
                     actualizarStockGalletasGramo(orden.galleta.idGalleta, cantidad);
-                    // Actualizar la ordenGalletas original con la cantidad ingresada
-                    actualizarOrdenGalletas(gramosVendidas*10);
+                    actualizarOrdenGalletas();
+
+                    return true;
                 }
-            }
+            });
         })();
     }
+    if (idTipoVenta === 3) {
+        (async () => {
+            const swalContent = document.createElement('div');
+            swalContent.innerHTML = `
+            <label for="swal-input1">Cantidad de peso de dinero</label>
+            <br>
+            <input type="text" id="swal-input1" style="width: 70%; margin-top: 2%;" maxlength="10" autocapitalize="off" autocorrect="off" onkeypress="return soloNumeros(event)" placeholder="Cantidad de dinero.">
+            `;
+            const {value: cantidad} = await Swal.fire({
+                title: "VENTA POR PESO DE DINERO",
+                html: swalContent,
+                confirmButtonText: "ACEPTAR",
+                preConfirm: () => {
+                    const input = document.getElementById('swal-input1');
+                    const cantidad = input.value;
+
+                    if (cantidad) {
+                        if (cantidad > cantidadGalletaSeleccionada) {
+                            alerta("error", "No hay galletas suficientes");
+                            return false;
+                        } else {
+                            orden.cantidad = cantidad / orden.galleta.precio;
+                            orden.pesoDinero = cantidad / orden.galleta.precio;
+                            ordenGalletas.push(orden);
+                            actualizarStockGalletas(orden.galleta.idGalleta, cantidad / orden.galleta.precio);
+                            //Actualizar la ordenGalletas original con la cantidad ingresada
+                            actualizarOrdenGalletas();
+                            return true;
+                        }
+                    } else {
+                        alerta("error", "Ingresar una cantidad de galletas");
+                        return false;
+                    }
+                }
+            });
+        })();
+    }
+
+    if (idTipoVenta === 4) {
+        (async () => {
+            const swalContent = document.createElement('div');
+            swalContent.innerHTML = `
+            <label for="swal-input1">Cantidad de venta</label>
+            <br>
+            <select id="swal-input1" style="width: 70%; margin-top: 2%; height: 40px; border-radius: 10px; text-indent: 10px;">
+                <option value="12">Docena</option>
+                <option value="6">Media Docena</option>
+            </select>
+            `;
+            const {value: cantidad} = await Swal.fire({
+                title: "INGRESE LA CANTIDAD",
+                html: swalContent,
+                confirmButtonText: "ACEPTAR",
+                preConfirm: () => {
+                    const input = document.getElementById('swal-input1');
+                    const cantidad = parseInt(input.value);
+
+                    if (cantidad) {
+                        if (cantidad > cantidadGalletaSeleccionada) {
+                            alerta("error", "No hay galletas suficientes");
+                            return false;
+                        } else {
+                            orden.cantidad = cantidad;
+                            ordenGalletas.push(orden);
+                            actualizarStockGalletas(orden.galleta.idGalleta, cantidad);
+                            actualizarOrdenGalletas();
+                            return true;
+                        }
+                    } else {
+                        alerta("error", "Ingresar una cantidad de galletas");
+                        return false;
+                    }
+                }
+            });
+        })();
+    }
+
 }
 
 function actualizarStockGalletas(idGalleta, cantidadVendida) {
@@ -421,10 +565,9 @@ function eliminarGalleta(idGalleta) {
 
     let galletaCantidad = ordenGalletasFind.cantidad;
     let anteriorGalletas = galleta.cantidad;
-    
+
     galleta.cantidad = parseFloat(galletaCantidad) + parseFloat(anteriorGalletas);
 
-    console.log(galletaCantidad);
     createDivsFromGalletas(galletas);
 
     let index = ordenGalletas.find(g => g.galletaidGalleta === idGalleta);
@@ -433,7 +576,6 @@ function eliminarGalleta(idGalleta) {
     if (index !== -1) {
         ordenGalletas.splice(index, 1);
         actualizarOrdenGalletas();
-        console.log(ordenGalletas);
     }
 }
 
@@ -454,4 +596,35 @@ function alerta(icon, error) {
         icon: icon,
         title: error
     });
+}
+
+function soloNumeros(event) {
+    // Obtener el código de tecla presionada
+    var charCode = event.which || event.keyCode;
+
+    // Permitir solo números (códigos de tecla entre 48 y 57 son números)
+    if (charCode < 48 || charCode > 57) {
+        event.preventDefault();
+        return false;
+    }
+
+    // Permitir la tecla Enter (código 13)
+    if (charCode === 13) {
+        return true;
+    }
+}
+
+function calcularPrecio() {
+    let total = "";
+    ordenGalletas.forEach(function (galleta) {
+        let precio = galleta.galleta.precio;
+        let cantidad = galleta.cantidad;
+        let subTotal = precio * cantidad;
+
+        total = parseFloat(document.getElementById("txtTotalVenta").textContent);
+
+        total += subTotal;
+
+    });
+    document.getElementById("txtTotalVenta").innerHTML = total;
 }
