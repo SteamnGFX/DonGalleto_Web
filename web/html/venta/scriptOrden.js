@@ -42,16 +42,16 @@ async function getData(url) {
 
 export function inicializar(){    
 
-    // let url = "api/galleta/getAll";
+    let url = "api/galleta/getAll";
     
-    // getData(url)
-    // .then(data => {
-    //     galletas = data;
-    //     createCards();
-    // })
-    // .catch(error => {
-    //     console.error("Error al obtener los datos:", error.message);
-    // });
+    getData(url)
+    .then(data => {
+        galletas = data;
+        createCards();
+    })
+    .catch(error => {
+        console.error("Error al obtener los datos:", error.message);
+    });
 
     tipoVenta = [
         {
@@ -72,32 +72,32 @@ export function inicializar(){
         }
     ];
 
-    galletas = [
-        {
-            idGalleta: "1",
-            nombre: "Galleta 1",
-            cantidad: 25,
-            fotografia: "",
-            precio: "20.00",
-            peso: 200         
-        },
-        {
-            idGalleta: "2",
-            nombre: "Galleta 2",
-            cantidad: 10,
-            fotografia: "",
-            precio: "20.00",
-            peso: 200         
-        },
-        {
-            idGalleta: "3",
-            nombre: "Galleta 3",
-            cantidad: 15,
-            fotografia: "",
-            precio: "20.00",
-            peso: 200         
-        }
-    ];
+    // galletas = [
+    //     {
+    //         idGalleta: "1",
+    //         nombre: "Galleta 1",
+    //         cantidad: 25,
+    //         fotografia: "",
+    //         precio: "20.00",
+    //         peso: 200         
+    //     },
+    //     {
+    //         idGalleta: "2",
+    //         nombre: "Galleta 2",
+    //         cantidad: 10,
+    //         fotografia: "",
+    //         precio: "20.00",
+    //         peso: 200         
+    //     },
+    //     {
+    //         idGalleta: "3",
+    //         nombre: "Galleta 3",
+    //         cantidad: 15,
+    //         fotografia: "",
+    //         precio: "20.00",
+    //         peso: 200         
+    //     }
+    // ];
 
     document.getElementsByClassName("total")[0].style.display = "none";
     document.getElementById("btnCobrar").disabled = true;

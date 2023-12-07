@@ -1,23 +1,29 @@
-var inventario = document.getElementById("card-inventario");
-var materia = document.getElementById("card-materia");
-var venta = document.getElementById("card-venta");
-var recetas = document.getElementById("card-recetas");
-var corte = document.getElementById("card-corte");
-
 let links = {};
 
 export function inicializar() {
   links = {
-    inicio: {
-      htmlFile: "html/menu/menu.html",
-      jsFile: "../html/menu/menu.js",
-      cssFile: "html/menu/menu.css",
-    },
     recetas: {
-      htmlFile: "html/receta/recetas.html",
-      jsFile: "../html/receta/recetas.js",
-      cssFile: "html/receta/recetas.css",
+      htmlFile: "receta/recetas.html",
+      jsFile: "receta/recetas.js",
+      cssFile: "receta/recetas.css",
     },
+    ventas: {
+      htmlFile: "venta/orden.html",
+      jsFile: "venta/scriptOrden.js",
+      cssFile: "venta/styles.css",
+    },
+    inventario: {
+      htmlFile: "invetario/inventario.html",
+      jsFile: "inventario/script.js",
+      cssFile: "invetario/styles.css",
+    },
+    recetas:{
+      "htmlFile": "receta/recetas.html",
+      "jsFile": "receta/recetas.js",
+      "cssFile": "receta/recetas.css"
+  },
+
+
   };
 }
 
@@ -42,7 +48,15 @@ export function loadContent(opcion) {
 
       document.getElementById("moduleBox").innerHTML = htmlContent;    
 
+      
+
+      const rutaSinHtmlPrefix = op.jsFile.replace("html/", "");
+
+      console.log(rutaSinHtmlPrefix)
+
       import(op.jsFile).then((ctr) => {
+
+        
         controller = ctr;
 
         controller.inicializar();
@@ -53,8 +67,3 @@ export function loadContent(opcion) {
     });
 }
 
-function eliminarCache() {
-  localStorage.clear();
-}
-
-// document.addEventListener('click', closeNavbarOutsideClick);

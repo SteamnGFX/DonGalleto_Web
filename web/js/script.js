@@ -22,33 +22,32 @@ function inicializar(){
             btn: "ventas"
         },
         {
+            label: "Inventario",
+            icon: "fas fa-box",
+            btn: "inventario"
+        },
+        {
+            label: "Materia Prima",
+            icon: "fas fa-leaf",
+            btn: "materia"
+        },{
+            label: "Corte",
+            icon: "fas fa-money-check-alt",
+            btn: "corte"
+        },        
+        {
             label: "Recetas",
             icon: "fas fas fa-book",
             btn: "recetas"
         },
-        ,
-        // {
-        //     link: "inicio.html",
-        //     label: "Inventario",
-        //     icon: ""
-        // },
-        // {
-        //     link: "inicio.html",
-        //     label: "Materia Prima",
-        //     icon: ""
-        // },
-        // {
-        //     link: "inicio.html",
-        //     label: "Corte",
-        //     icon: ""
-        // }
+        
     ];
 
     menuItem = {
         "inicio":{
-            "htmlFile": "html/menu/menu.html",
-            "jsFile": "../html/menu/menu.js",
-            "cssFile": "html/menu/menu.css"
+            "htmlFile": "menu/menu.html",
+            "jsFile": "../menu/menu.js",
+            "cssFile": "/menu/menu.css"
         },
         "recetas":{
             "htmlFile": "html/receta/recetas.html",
@@ -59,13 +58,18 @@ function inicializar(){
             "htmlFile": "html/venta/orden.html",
             "jsFile": "../html/venta/scriptOrden.js",
             "cssFile": "html/venta/styles.css"
+        },
+        "inventario":{
+            "htmlFile": "html/inventario/inventario.html",
+            "jsFile": "../html/inventario/script.js",
+            "cssFile": "html/inventario/styles.css"
         }
 
     };
 
     cargarMenu();
 
-    loadContent("ventas");
+    loadContent("inicio");
 }
 
 function toggleCollapse(){
