@@ -1,68 +1,40 @@
-<!DOCTYPE html>
-<html lang="es">
+<button class="btnRegresar" onclick="if (controller.opcion == 'ver') { controller.loadContent('ver') } else loadContent('inventario')">
+    <span><i class="fas fa-arrow-left"></i> Regresar</span>
+</button>
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="icon" href="../../img/icono.png" type="image/x-icon">
-        <link rel="stylesheet" href="styles.css">
-        <link href="../../Assets/fontAwesome/all.min.css" rel="stylesheet" type="text/css"/>
-        <link href="../../Assets/material-ui.css" rel="stylesheet" type="text/css"/>
-        <title>SIG - Galleta</title>
-    </head>
+<h1 class="titulos">GALLETA</h1>
 
-    <body>
-        <i class="fas fa-bars" id="navbar-icon" onclick="toggleNavbar();"></i>
-        <ul class="navbar">
-            <li class="nav-item"><a class="nav-link" href="../../inicio.html"><i class="fas fa-home"></i> Inicio</a></li>
-            <li class="nav-item"><a class="nav-link" href="../receta/recetas.html"><i class="fas fa-book-open"></i>
-                    Recetas</a></li>
-            <li class="nav-item"><a class="nav-link" href="../inventario/inventario.html"><i class="fas fa-cookie"></i>
-                    Inventario</a></li>
-            <li class="nav-item"><a class="nav-link" href="../materia/materias.html"><i class="fas fa-seedling"></i>
-                    Materia Prima</a></li>
-            <li class="nav-item"><a class="nav-link" href="../venta/orden.html"><i class="fas fa-shopping-cart"></i>
-                    Venta</a></li>
-            <li class="nav-item"><a class="nav-link" href="../corte/corte.html"><i class="fas fa-cut"></i> Corte</a></li>
-            <li class="nav-item"><a class="nav-link" id="cerrarSesion"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a>
-            </li>
-        </ul>
-        <button class="btnRegresar" onclick="regresarInventario()">← Regresar</button>
+<div class="contenedor-galleta">
+    <div class="foto">
+        <img id="fotografiaGalleta" src="../../img/logo.png" alt="logo" class="imgGalleta">
+        <p style="padding:0%; margin:-2%; font-style: italic; color:gray">Formato de imagen JPG, PNG</p>
+        <p style="padding:0%; margin:1%; font-style: italic; color:gray">192 x 192 pixeles</p>
+        <br>
+        <p style="padding:0%; margin:0%">Cantidad de galletas</p>
+        <div class="botones">
+            <button id="btnAgregar" class="btn agregar"><span>+</span></button>
+            <label id="txtCantidadGalletas" for="">X</label>
+            <input id="txtCantidadGalletas2" class="d-none" type="number"
+                style="width: 25%; height: 70%; border-radius: 10px" onblur="controller.guardarNumero()"
+                onkeypress="return soloNumeros(event)">
+            <button id="btnDisminuir" class="btn disminuir"><span>-</span></button>
+        </div>
+    </div>
+    <div class="info">
 
-        <h1 class="titulos">GALLETA</h1>
-
-        <div class="contenedor-galleta">
-            <div class="foto">
-                <img id="fotografiaGalleta" src="../../img/logo.png" alt="logo" class="imgGalleta">
-                <p style="padding:0%; margin:-2%; font-style: italic; color:gray">Formato de imagen JPG, PNG</p>
-                <p style="padding:0%; margin:1%; font-style: italic; color:gray">192 x 192 pixeles</p>
-                <br>
-                <p style="padding:0%; margin:0%">Cantidad de galletas</p>
-                <div class="botones">
-                    <button id="btnAgregar" class="btn agregar"><span>+</span></button>
-                    <label id="txtCantidadGalletas" for="">X</label>
-                    <input id="txtCantidadGalletas2" class="d-none" type="number" style="width: 25%; height: 70%; border-radius: 10px" onblur="guardarNumero()" onkeypress="return soloNumeros(event)" >
-                    <button id="btnDisminuir" class="btn disminuir"><span>-</span></button>
-                </div>
-            </div>
-            <div class="info">
-
-                <div class="info-galleta" style="width: 85%">
-                    <input id="txtIdGalleta" type="number" placeholder="ID GALLETA" disabled class="d-none">
-                    <input id="txtNombreGalleta" type="text" placeholder="Ingresa el nombre de una nueva galleta...">
-                    <input id="txtPrecioGalleta"  type="text" placeholder="Ingresa el precio de una galleta..." onkeypress="return soloNumeros(event)" ><p>MXN</p>
-                </div>
-
-                <textarea id="txtDescripcionGalleta" name="area" id="area" cols="30" rows="10" placeholder="Ingresa una descripción de una nueva galleta..."></textarea>
-                <input id="txtPesoGalleta" type="number" placeholder="Peso de galleta en gramos." onkeypress="return soloNumeros(event)" ></input>
-                <button id="eliminarGalleta" class="btn-eliminar"><span>Eliminar <i class="fas fa-save"></i></span></button>
-                <button id="guardarGalleta" class="btn-guardar"><span>Guardar <i class="fas fa-save"></i></span></button>
-            </div>
+        <div class="info-galleta" style="width: 85%">
+            <input id="txtIdGalleta" type="number" placeholder="ID GALLETA" disabled class="d-none">
+            <input id="txtNombreGalleta" type="text" placeholder="Ingresa el nombre de una nueva galleta...">
+            <input id="txtPrecioGalleta" type="text" placeholder="Ingresa el precio de una galleta..."
+                onkeypress="return soloNumeros(event)">
+            <p>MXN</p>
         </div>
 
-        <script src="../../Assets/all.min.js"></script>
-        <script src="scriptGalleta.js"></script>
-        <script src="../../Assets/sweetalert2.all.js" type="text/javascript"></script>
-    </body>
-
-</html>
+        <textarea id="txtDescripcionGalleta" name="area" id="area" cols="30" rows="10"
+            placeholder="Ingresa una descripción de una nueva galleta..."></textarea>
+        <input id="txtPesoGalleta" type="number" placeholder="Peso de galleta en gramos."
+            onkeypress="return soloNumeros(event)"></input>
+        <button id="eliminarGalleta" class="btn-eliminar"><span>Eliminar <i class="fas fa-save"></i></span></button>
+        <button id="guardarGalleta" class="btn-guardar"><span>Guardar <i class="fas fa-save"></i></span></button>
+    </div>
+</div>
