@@ -1,5 +1,3 @@
-@import url("../../css/main.css");
-
 /* RECETAS */
 
 * {
@@ -105,7 +103,7 @@
 
 .card-receta:hover {
     transform: scale(1.02);
-    background-color: #bebebec3;
+    background-color: var(--clr-amarillo2);
 }
 
 .infoGalleta span {

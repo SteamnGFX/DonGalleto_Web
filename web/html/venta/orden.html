@@ -1,72 +1,32 @@
-<!DOCTYPE html>
-<html lang="es">
-
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="icon" href="../../img/icono.png" type="image/x-icon">
-        <link rel="stylesheet" href="styles.css">
-        <link href="../../Assets/fontAwesome/all.min.css" rel="stylesheet" type="text/css"/>
-        <title>SIG - Orden</title>
-    </head>
-
-    <body>
-        <i class="fas fa-bars" id="navbar-icon" onclick="toggleNavbar();"></i>
-        <ul class="navbar">
-            <li class="nav-item"><a class="nav-link" href="../../inicio.html"><i class="fas fa-home"></i> Inicio</a></li>
-            <li class="nav-item"><a class="nav-link" href="../receta/recetas.html"><i class="fas fa-book-open"></i>
-                    Recetas</a></li>
-            <li class="nav-item"><a class="nav-link" href="../inventario/inventario.html"><i class="fas fa-cookie"></i>
-                    Inventario</a></li>
-            <li class="nav-item"><a class="nav-link" href="../materia/materias.html"><i class="fas fa-seedling"></i>
-                    Materia Prima</a></li>
-            <li class="nav-item"><a class="nav-link" href="orden.html"><i class="fas fa-shopping-cart"></i>
-                    Venta</a></li>
-            <li class="nav-item"><a class="nav-link" href="../corte/corte.html"><i class="fas fa-cut"></i> Corte</a></li>
-            <li class="nav-item"><a class="nav-link" id="cerrarSesion"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a>
-            </li>
-        </ul>
-        <button id="btnRegresar" class="btnRegresar">← Regresar</button>
-
-        <h1 class="titulos">ORDEN</h1>
-        <div class="contenedor-orden">
-            <div id="galletas-orden"  class="galletas-orden">
-                <div class="card-galleta"><img src="../../img/icono.png" alt="galleta"></div>
+<div class="contenedor">
+    <button id="btnRegresar" class="btnRegresar" onclick="loadContent('inicio');">        
+        <span><i class="fas fa-arrow-left"></i> Regresar</span>
+    </button>
+    <h1 class="titulos">VENTA</h1>
+    <div class="contenedor-orden">
+        <div id="contenedor-g"></div>
+        <div id="detalles">
+            <h2 class="titulos-secundarios">ORDEN</h2>
+            <div id="ordenLista">
+                <p class="selectItem">Seleccione alguna galleta para iniciar la orden.</p>
             </div>
-            <div class="info-orden">
-                <div class="orden">
-                    <h2 class="titulos-secundarios">ORDEN</h2>
-                    <div id="ordenLista">
-                        <p style="text-align: center; color:gray; font-style: italic;">Seleccione alguna galleta para iniciar la orden.</p>
-                    </div>
-                </div>
-                <div id="flechainf" class="d-none" style="position: absolute; bottom:  12%">
-                    <span style="background-color: wheat; padding: 30%; border-radius: 25%"><i class="fa-solid fa-arrow-down-long"></i></span>
-                </div>  
-                <button id="btnCobrar" class="btn"><span>COBRAR <i class="fas fa-money-bill-wave"></i></span></button>
+
+            <div class="total">
+                <span>TOTAL: $200</span>
             </div>
+
+            <div id="productos"></div>
+
+            <div id="flechainf" class="d-none" style="position: absolute; bottom:  12%">
+                <span style="background-color: wheat; padding: 30%; border-radius: 25%"><i
+                        class="fa-solid fa-arrow-down-long"></i></span>
+            </div>
+
+            <button id="btnCobrar" class="btn">
+                <span> COBRAR <i class="fas fa-money-bill-wave"></i></span>
+            </button>
+            
         </div>
-
-        <div class="contenedor-venta">
-            <div class="venta">
-                <div class="cerrar-venta">
-                    <i class="fa-solid fa-times"></i>
-                </div>
-                <h2 class="titulos-secundarios">Seleccione una opción</h2>
-                <div class="opciones">
-                    <button id="btnUnidad" class="btn"><span>Unidad <i class="fas fa-box"></i></span></button>
-                    <button id="btnGramo" class="btn"><span>Gramo <i class="fas fa-weight"></i></span></button>
-                    <button id="btnPaquete" class="btn"><span>Paquete <i class="fas fa-shopping-bag"></i></span></button>
-
-                </div>
-                <input id="txtCantidadVenta" class="d-none" type="number" placeholder="Cantidad de venta" min="1">
-                <button id="btnVenta"  class="d-none"><span>Aceptar <i class="fas fa-check-circle"></i></span></button>
-            </div>
-        </div>
-        <link href="../../Assets/material-ui.css" rel="stylesheet" type="text/css"/>
-        <script src="../../Assets/all.min.js"></script>
-        <script src="scriptOrden.js"></script>
-        <script src="../../Assets/sweetalert2.all.js"></script>
-    </body>
-
-</html>
+        
+    </div>
+</div>

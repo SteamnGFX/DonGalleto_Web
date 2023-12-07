@@ -17,10 +17,16 @@ function inicializar(){
             btn: "inicio"
         },
         {
+            label: "Ventas",
+            icon: "fas fa-shopping-cart",
+            btn: "ventas"
+        },
+        {
             label: "Recetas",
             icon: "fas fas fa-book",
             btn: "recetas"
         },
+        ,
         // {
         //     link: "inicio.html",
         //     label: "Inventario",
@@ -46,14 +52,20 @@ function inicializar(){
         },
         "recetas":{
             "htmlFile": "html/receta/recetas.html",
-            "jsFile": "../../html/receta/recetas.js",
+            "jsFile": "../html/receta/recetas.js",
             "cssFile": "html/receta/recetas.css"
+        },
+        "ventas":{
+            "htmlFile": "html/venta/orden.html",
+            "jsFile": "../html/venta/scriptOrden.js",
+            "cssFile": "html/venta/styles.css"
         }
+
     };
 
     cargarMenu();
 
-    loadContent("inicio");
+    loadContent("ventas");
 }
 
 function toggleCollapse(){
@@ -137,15 +149,18 @@ function loadContent(opcion) {
         .then(htmlContent => {
             
             setTimeout(() => {
-                document.getElementById('moduleBox').innerHTML = htmlContent; 
+                document.getElementById('moduleBox').innerHTML = htmlContent;
+
+                import(op.jsFile)
+                .then(ctr => {
+                    controller = ctr;
+                    
+                    controller.inicializar();
+                });
+
             }, 1000);
 
-            import(op.jsFile)
-            .then(ctr => {
-                controller = ctr;
-                
-                controller.inicializar();
-            });
+            
             
         })
         .catch(error => {
@@ -156,6 +171,7 @@ function loadContent(opcion) {
 function removeScripts(selector) {
     const scripts = document.querySelectorAll(selector);
     scripts.forEach(script => script.parentNode.removeChild(script));
+    document.getElementById('moduleBox').innerHTML = ""; 
 }
 
 

@@ -84,3 +84,43 @@
   --clr-whiteT: #f4f4f8;
 
 }
+
+/* Estilo para la barra de desplazamiento */
+div::-webkit-scrollbar {
+  width: 12px !important;
+}
+
+div::-webkit-scrollbar-thumb {
+  background-color: #606060 !important;
+  border-radius: 6px !important;
+}
+
+div::-webkit-scrollbar-track {
+  background-color: #f1f1f1 !important;
+}
+
+div {
+  scrollbar-width: thin !important;
+  scrollbar-color: #606060 #f1f1f1 !important;
+}
+
+div {
+  -ms-overflow-style: none !important;
+}
+
+div::-ms-scrollbar {
+  width: 12px !important;
+}
+
+div::-ms-thumb {
+  background-color: #606060 !important;
+  border-radius: 6px !important;
+}
+
+div::-ms-track {
+  background-color: #f1f1f1 !important;
+}
+
+.swal2-popup {
+  font-family: 'Open Sans Regular' !important;
+}
