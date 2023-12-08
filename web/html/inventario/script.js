@@ -212,7 +212,7 @@ export function cargarGalleta(id) {
         document.getElementById("txtIdGalleta").value = galleta.idGalleta;
         document.getElementById("txtNombreGalleta").value = galleta.nombre;
         document.getElementById("txtDescripcionGalleta").value = galleta.descripcion;
-        document.getElementById("txtPrecioGalleta").value = galleta.precio;
+        document.getElementById("txtPrecioGalleta").value = "$" + galleta.precio;
         document.getElementById("txtCantidadGalletas").innerHTML = galleta.cantidad;
         document.getElementById("txtPesoGalleta").value = galleta.peso;    
 

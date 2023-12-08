@@ -94,7 +94,7 @@ body {
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    width: 30%;
+    width: 20%;
     height: 45px;
     background-color: var(--clr-verde);
     font-weight: 300;
@@ -115,7 +115,7 @@ body {
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    width: 30%;
+    width: 20%;
     height: 45px;
     background-color: red;
     font-weight: 200;
@@ -130,6 +130,13 @@ body {
     bottom: 60px;
     right: 380px;
     z-index: 999;
+}
+
+.btns{
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    align-items: center;
 }
 
 .btn-guardar span {
@@ -207,7 +214,7 @@ body {
     grid-template-columns: 0.5fr 1fr;
     justify-content: center;
     align-items: center;
-    margin-top: 40px;
+    margin-top: 80px;
 }
 
 .foto {
@@ -285,40 +292,7 @@ body {
 }
 
 /*** INFO ***/
-input,
-textarea {
-    font-family: "Open Sans Regular", sans-serif;
-    font-size: 16px;
-    padding: 0 20px;
-    background-color: transparent;
-    border: 3px solid var(--clr-negro);
-}
 
-.info {
-    height: 50vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    gap: 20px;
-}
-
-.info-galleta {
-    display: flex;
-    gap: 20px;
-}
-
-.info input {
-    width: 80%;
-    height: 50px;
-    border-radius: 20px;
-}
-
-.info textarea {
-    width: 80%;
-    border-radius: 20px;
-}
 
 @media screen and (max-width: 1000px) {
     .nav-item:last-child{
@@ -533,3 +507,27 @@ textarea {
     font-size: 8px;
     font-family: "Open Sans Regular";
 }
+
+/* Estilo para inputs */
+input[type="text"],
+input[type="number"] {
+  width: 90%;
+  padding: 8px;
+  margin-bottom: 16px;
+  border: 1px solid #bdbdbd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* Estilo para textarea */
+textarea {
+  width: 90%;
+  padding: 8px;
+  margin-bottom: 16px;
+  border: 1px solid #bdbdbd;
+  border-radius: 4px;
+  box-sizing: border-box;
+  resize: vertical; /* Permite redimensionar verticalmente */
+  resize: none;
+}
+
